@@ -10,24 +10,6 @@ Branch `dev` akan digunakan untuk *merging* dari fitur-fitur yang telah kita *de
 
 - Masing-masing fitur akan mempunyai penanggungjawab (PJ).
 
-1. Fitur autentikasi
-Sandria Rania Isanura
-
-2. Fitur pinjam buku
-Rashif Aunur Rasyid
-
-3. Fitur toko buku
-Ahmad Fatih Faizi
-
-4. Fitur *bookshelf*
-Nasywa Kamila Az Zahra
-
-5. Fitur donasi buku
-Mahesa Farih Prasetyo
-
-6. Fitur review buku
-Muhammad Rafi Zia Ulhaq
-
 - Setiap PJ akan membuat *branch* baru untuk fiturnya masing-masing.
 
 Branch diharapkan sesuai dengan nama fitur.
