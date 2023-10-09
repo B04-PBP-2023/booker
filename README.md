@@ -4,55 +4,62 @@ Booker adalah aplikasi web untuk meminjam, mendonasikan, dan membeli buku.
 
 ## Fitur-Fitur Booker
 
-## 1. Front Page
+1. Front Page
 
 Tampilan awal web, di mana pengguna dapat melihat koleksi buku-buku yang tersedia.
 
-## 2. Autentikasi
+2. Autentikasi
 
 Setiap pengguna harus mendaftar dan login ketika ingin mengakses *website*, agar data-data pengguna pada *website* aman.
 
-## 3. Pinjam buku
+3. Pinjam buku
 
 Pengguna dapat meminjam buku. Buku yang dipinjam dapat diakses di bookshelf masing-masing pengguna. Setiap buku yang telah selesai masa pinjamnya, akan otomatis dikembalikan. Ketika pengguna mengembalikan buku, pengguna akan mendapatkan poin yang dapat ditukar dengan buku.
 
-## 4. Beli buku (Toko Buku)
+4. Beli buku (Toko Buku)
 
 Pengguna dapat membeli buku. Buku yang telah dibeli dapat diakses di bookshelf masing-masing pengguna. Pengguna juga dapat menggunakan poin yang diperoleh dari meminjam buku atau donasi untuk membeli buku.
 
-## 5. *Bookshelf*
+5. *Bookshelf*
 
 Bookshelf menyimpan dan memungkinkan pengguna mengakses semua buku yang telah dibeli dan/atau sedang dipinjam oleh pengguna.
 
-## 6. Donasi buku
+6. Donasi buku
 
 Pengguna dapat mendonasikan buku. Setiap buku yang didonasikan, pengguna akan mendapat poin yang dapat ditukarkan dengan buku di Toko Buku. Buku yang telah didonasikan, akan tersedia untuk dipinjam oleh pengguna lain.
 
-## 7. Review buku
+7. Review buku
 
 Pengguna yang sudah pernah meminjam/membeli buku, dapat memberikan ulasan untuk buku tersebut. Setiap pengguna memberi ulasan, pengguna akan mendapatkan poin yang dapat ditukar dengan buku.
 
 ## Pembagian Tugas
 
 1. Front page (Tampilan dataset buku)
+
 Ahmad Fatih Faizi
 
 2. Fitur autentikasi
+
 Sandria Rania Isanura
 
 3. Fitur pinjam buku
+
 Rashif Aunur Rasyid
 
 4. Fitur beli buku
+
 Ahmad Fatih Faizi
 
 5. Fitur *bookshelf*
+
 Nasywa Kamila Az Zahra
 
 6. Fitur donasi buku
+
 Mahesa Farih Prasetyo
 
 7. Fitur review buku
+
 Muhammad Rafi Zia Ulhaq
 
 # Spesifikasi Fitur
