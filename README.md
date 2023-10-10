@@ -6,7 +6,7 @@ Booker adalah aplikasi web untuk meminjam, mendonasikan, dan membeli buku.
 
 1. Front Page
 
-    Tampilan awal web, di mana pengguna dapat melihat koleksi buku-buku yang tersedia.
+    Tampilan awal web, di mana pengguna dapat melihat koleksi buku-buku yang tersedia, dan mencari buku.
 
 2. Autentikasi
 
@@ -76,9 +76,9 @@ Booker adalah aplikasi web untuk meminjam, mendonasikan, dan membeli buku.
 
 - Berisi daftar koleksi buku yang tersedia di Booker.
 - Terdapat fitur pencarian buku, dan sorting, dan filter berdasarkan kategori.
-- Diharapkan menggunakan `card`.
+- Diharapkan menggunakan card.
 - Card tersebut memuat tombol untuk pinjam dan beli (jika dapat dibeli).
-- Jika card diklik, maka pengguna akan di-`redirect` ke laman yang menampilkan info lengkap buku tersebut dan juga memuat tombol pinjam dan beli (jika dapat dibeli).
+- Jika card diklik, maka pengguna akan di-*redirect* ke laman yang menampilkan info lengkap buku tersebut dan juga memuat tombol pinjam dan beli (jika dapat dibeli).
 - Pengguna dapat mengakses fitur ini tanpa login, tetapi tidak dapat meminjam maupun membeli.
 - Terdapat wishlist yang berfungsi untuk menandai buku yang pengguna ingin pinjam/beli.
 
