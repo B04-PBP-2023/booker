@@ -1,6 +1,42 @@
-# Booker
+# Kelompok B04 (Booker)
 
-Booker adalah aplikasi web untuk meminjam, mendonasikan, dan membeli buku.
+## Nama-Nama Anggota Kelompok
+
+1. Ahmad Fatih Faizi
+
+2. Sandria Rania Isanura
+
+3. Rashif Aunur Rasyid
+
+4. Nasywa Kamila Az Zahra
+
+5. Mahesa Farih Prasetyo
+
+6. Muhammad Rafi Zia Ulhaq
+
+## Booker
+
+Booker adalah aplikasi web untuk meminjam, mendonasikan, dan membeli buku. Aplikasi web ini dilengkapi dengan sistem poin yang bisa didapatkan ketika meminjam, melakukan *review*, serta mendonasikan buku. Poin tersebut dapat ditukarkan dengan buku gratis. Dengan sistem ini, diharapkan pengguna semakin termotivasi untuk membaca buku, dan membantu meningkatkan literasi masyarakat Indonesia.
+
+## Dataset Buku yang Digunakan
+
+Kita akan menggunakan [Google Books API](https://developers.google.com/books/).
+
+## Role
+
+Terdapat tiga (3) role di aplikasi web ini, yakni Admin dan User, Guest.
+
+- Admin
+
+    Admin dapat mengakses laman admin, dan fitur-fitur yang dapat diakses oleh role User.
+
+- User
+
+    User dapat mengakses semua fitur, **kecuali laman admin**. Untuk mendapatkan role User, pengguna harus melakukan pendaftaran dan login.
+
+- Guest
+
+    Guest adalah role *default* jika pengguna tidak login. Guest dapat mengakses laman front page, tetapi tidak dapat mengakses *bookshelf*, dan tidak dapat melakukan peminjaman maupun pembelian buku.
 
 ## Fitur-Fitur Booker
 
@@ -84,7 +120,7 @@ Booker adalah aplikasi web untuk meminjam, mendonasikan, dan membeli buku.
 
 ## Autentikasi
 
-- Akan ada dua (2) role, yakni Admin dan User.
+- Akan ada tiga (3) role, yakni Admin, User, dan Guest.
 - Role Admin dapat mengakses laman admin.
 - User tidak dapat mengakses laman admin.
 - Pengguna dapat mengakses front page tanpa login, tetapi tidak dapat membeli ataupun meminjam buku.
