@@ -24,7 +24,7 @@ Kita akan menggunakan [Google Books API](https://developers.google.com/books/).
 
 ## Role
 
-Terdapat tiga (3) role di aplikasi web ini, yakni Admin dan User, Guest.
+Terdapat tiga (3) role di aplikasi web ini, yakni Admin, User, dan Guest.
 
 - Admin
 
