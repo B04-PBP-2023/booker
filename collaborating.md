@@ -4,23 +4,23 @@
 
 - Kita akan mempunyai 2 (dua) long-lived branch, yakni `main` dan `dev`.
 
-Branch `main` akan digunakan untuk deployment, sehingga semua *change(s)* yang dibuat akan live (di-*deploy*).
+    Branch `main` akan digunakan untuk deployment, sehingga semua *change(s)* yang dibuat akan live (di-*deploy*).
 
-Branch `dev` akan digunakan untuk *merging* dari fitur-fitur yang telah kita *develop* di branch fitur masing-masing, dan juga untuk testing sebelum *merge* ke `main` dan di-*deploy*.
+    Branch `dev` akan digunakan untuk *merging* dari fitur-fitur yang telah kita *develop* di branch fitur masing-masing, dan juga untuk testing sebelum *merge* ke `main` dan di-*deploy*.
 
 - Masing-masing fitur akan mempunyai penanggungjawab (PJ).
 
 - Setiap PJ akan membuat *branch* baru untuk fiturnya masing-masing.
 
-Branch diharapkan sesuai dengan nama fitur.
+    Branch diharapkan sesuai dengan nama fitur.
 
 - PJ hanya push ke *branch*-nya masing-masing.
 
-Sebisa mungkin untuk tidak push ke *branch* lain, apalagi ke *branch* `main`. PJ juga diharapkan untuk testing di *local* terlebih dahulu sebelum *push* ke *remote repository*.
+    Sebisa mungkin untuk tidak push ke *branch* lain, apalagi ke *branch* `main`. PJ juga diharapkan untuk testing di *local* terlebih dahulu sebelum *push* ke *remote repository*.
 
 - Setiap *incremental change(s)* yang akan di-*merge* ke `dev`, harus melalui *pull request* (PR).
 
-Kode yang di-*submit* diharapkan untuk di-*peer review* terlebih dahulu melalui fitur *pull request* sebelum di-*merge*.
+    Kode yang di-*submit* diharapkan untuk di-*peer review* terlebih dahulu melalui fitur *pull request* sebelum di-*merge*.
 
 ## Reading(s) on collaborating with GitHub
 
