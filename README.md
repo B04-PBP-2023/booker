@@ -38,7 +38,7 @@ Terdapat tiga (3) role di aplikasi web ini, yakni Admin dan User, Guest.
 
     Guest adalah role *default* jika pengguna tidak login. Guest dapat mengakses laman front page, tetapi tidak dapat mengakses *bookshelf*, dan tidak dapat melakukan peminjaman maupun pembelian buku.
 
-## Fitur-Fitur Booker
+## Fitur-Fitur (Modul) Booker
 
 1. Front Page
 
