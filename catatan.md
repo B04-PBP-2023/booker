@@ -11,3 +11,7 @@
 ## CSS Framework
 
 Kita akan memakai Bootstrap. Dengan pertimbangan, Bootstrap adalah yang diajarkan di tutorial.
+
+## Permission Denied ketika Push ke Remote
+
+Chat ke line Faizi (atau tag di grup).
