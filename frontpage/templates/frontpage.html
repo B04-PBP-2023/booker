@@ -1,17 +1,23 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<link href="{% static 'style.css' %}" rel="stylesheet">
+{% endblock meta %}
 
 {% block content %}
 <div class="container h-100">
   <div class="d-flex justify-content-center h-100">
-    <div class="searchbar field w-50">
-      <input class="search_input" type="text" name="" placeholder="Cari buku...">
-      <span><button class="fas fa-search"></button></span>
+    <div class="searchbar field w-75 w-lg-50">
+      <input id="search_input" class="search_input" type="text" name="" placeholder="Cari buku, penulis, genre...">
+      <span><button id="search_button" class="fas fa-search" onclick=""></button></span>
     </div>
   </div>
 </div>
-<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i
+
+<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top z-0" role="button"><i
     class="fas fa-chevron-up"></i></a>
-<div class="row justify-content-center" id="book_cards"></div>
+<div class="row justify-content-center p-2" id="book_cards"></div>
 
 
 <style>
@@ -82,6 +88,19 @@
     right: 25px;
     display: none;
   }
+
+  .checked {
+    color: rgba(255, 166, 0, 0.863);
+  }
+
+  .fa-dollar-sign {
+    color: green;
+  }
+
+  #book_card {
+    width: 17rem;
+    height: 26rem;
+  }
 </style>
 
 <script>
@@ -103,23 +122,53 @@
     });
   });
 
-  async function searchBooks() {
-    return 1;
+  search_button = document.getElementById("search_button");
+  search_button.addEventListener("click", async () => {
+    query = document.getElementById("search_input").value;
+    await searchBooks(query)
+  })
+
+  input = document.getElementById("search_input");
+  input.addEventListener("keypress", (event) => {
+    // If the user presses the "Enter" key on the keyboard
+    if (event.key === "Enter") {
+      // Cancel the default action, if needed
+      event.preventDefault();
+      document.getElementById("search_button").click();
+    }
+  });
+
+  async function searchBooks(q) {
+    books = await fetch(`{% url 'book:search_books'%}` + `?q=${q}`).then((res) => res.json());
+    await refreshCards(books);
   }
 
   async function getBooks() {
-    return fetch("{% url 'book:get_books' %}").then((res) => res.json())
+    books = await fetch("{% url 'book:get_books' %}").then((res) => res.json());
+    await refreshCards(books);
   }
 
-  async function refreshCards() {
-    const books = await getBooks()
+  async function refreshCards(books) {
     let htmlString = ""
     books.forEach((book) => {
-      htmlString += `<div class="content book_card col-md-5 mx-3 my-3" style="width: 20rem; height: 25rem;">
+      htmlString += `<div id="book_card" class="content book_card col-md-5 mx-3 my-3">
         <div class="card-body h-100 d-flex flex-column">
-          <h5 class="card-title">${book.fields.name}</h5>
-          <h6 class="card-subtitle text-light-emphasis">Author: ${book.fields.author}</h6>
+          <div>
+            <h5 class="card-title">${book.fields.name}</h5>
+            <h6 class="card-subtitle text-light-emphasis mt-3">Penulis: ${book.fields.author}</h6>
+            <h6 class="card-subtitle text-light-emphasis mt-2">Tahun: ${book.fields.year}</h6>
+            <h6 class="card-subtitle text-light-emphasis mt-2">Genre: ${book.fields.genre}</h6>
+          </div>
           <div class="mt-auto">
+            <div class="d-flex flex-row justify-content-between mb-3 px-2">
+              <h5 class="d-inline card-subtitle">
+                <span class="fa fa-dollar-sign me-1"></span>${book.fields.price}
+              </h5>
+              <h5 class="d-inline card-subtitle">
+                <span class="fa fa-star checked"></span>
+                ${book.fields.rating}
+              </h5>
+            </div>
             <button class="w-100 text-center">
               Pinjam
             </button>
@@ -134,6 +183,6 @@
     document.getElementById("book_cards").innerHTML = htmlString
   }
 
-  refreshCards()
+  getBooks()
 </script>
 {% endblock content %}
