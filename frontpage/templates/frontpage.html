@@ -1,14 +1,139 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+{% block content %}
+<div class="container h-100">
+  <div class="d-flex justify-content-center h-100">
+    <div class="searchbar field w-50">
+      <input class="search_input" type="text" name="" placeholder="Cari buku...">
+      <span><button class="fas fa-search"></button></span>
+    </div>
+  </div>
+</div>
+<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i
+    class="fas fa-chevron-up"></i></a>
+<div class="row justify-content-center" id="book_cards"></div>
 
-<body>
-  <h1>HALO DUNIYA</h1>
-</body>
 
-</html>
+<style>
+  body,
+  html {
+    margin: 0;
+    padding: 0;
+  }
+
+  div .container {
+    margin-top: 5em;
+    margin-bottom: 1em;
+  }
+
+  .card-title {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    /* number of lines to show */
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  .searchbar {
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 60px;
+    border-radius: 30px;
+    padding: 10px;
+  }
+
+  .search_input {
+    color: black;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color: transparent;
+    transition: width 0.4s linear;
+  }
+
+  .search_input {
+    width: 450px;
+    caret-color: black;
+    transition: width 0.4s linear;
+  }
+
+  .search_icon {
+    background: white;
+    color: #e74c3c;
+  }
+
+  .search_icon {
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: black;
+    text-decoration: none;
+  }
+
+  .back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: none;
+  }
+</style>
+
+<script>
+
+  $(document).ready(function () {
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > 50) {
+        $('#back-to-top').fadeIn();
+      } else {
+        $('#back-to-top').fadeOut();
+      }
+    });
+    // scroll body to 0px on click
+    $('#back-to-top').click(function () {
+      $('body,html').animate({
+        scrollTop: 0
+      }, 100);
+      return false;
+    });
+  });
+
+  async function searchBooks() {
+    return 1;
+  }
+
+  async function getBooks() {
+    return fetch("{% url 'book:get_books' %}").then((res) => res.json())
+  }
+
+  async function refreshCards() {
+    const books = await getBooks()
+    let htmlString = ""
+    books.forEach((book) => {
+      htmlString += `<div class="content book_card col-md-5 mx-3 my-3" style="width: 20rem; height: 25rem;">
+        <div class="card-body h-100 d-flex flex-column">
+          <h5 class="card-title">${book.fields.name}</h5>
+          <h6 class="card-subtitle text-light-emphasis">Author: ${book.fields.author}</h6>
+          <div class="mt-auto">
+            <button class="w-100 text-center">
+              Pinjam
+            </button>
+            <button class="w-100 text-center mt-3">
+              Beli
+            </button>
+          </div>
+        </div>
+      </div>`
+    })
+
+    document.getElementById("book_cards").innerHTML = htmlString
+  }
+
+  refreshCards()
+</script>
+{% endblock content %}

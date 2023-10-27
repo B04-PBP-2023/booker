@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container w-50 content">
+  <h3>Login</h3>
+  <form method="POST" id="form">
+    {% csrf_token %}
+    <div class="mb-3 field">
+      <!-- <label for="username" class="col-form-label d-block">Username</label> -->
+      <span class="fa fa-user ms-3"></span>
+      <input required class="rounded ps-5" type="text" id="id_username" name="username" placeholder="Username...">
+    </div>
+
+    <div class="mb-3 field">
+      <!-- <label for="password" class="col-form-label d-block">Password</label> -->
+      <span class="fa fa-lock ms-3"></span>
+      <input required class="rounded ps-5" type="password" id="id_password" name="password" placeholder="Password...">
+    </div>
+    <input class="w-100" type="submit" value="Login"></input>
+  </form>
+</div>
+
+<style>
+
+</style>
+{% endblock content %}
