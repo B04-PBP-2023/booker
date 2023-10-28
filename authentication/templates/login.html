@@ -1,10 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block meta %}
-<link href="{% static 'style.css' %}" rel="stylesheet">
-{% endblock meta %}
-
 {% block content %}
 <br><br>
 <div class="container content w-lg-25 w-md-50 w-100 py-4 px-4 mt-5 m-2 mx-auto">
@@ -12,12 +8,12 @@
   <form method="POST" id="form">
     {% csrf_token %}
     <div class="mb-3 field">
-      <span class="fa fa-user ms-3"></span>
+      <span class="fa fa-user mt-3 ms-3 position-absolute"></span>
       <input required class="rounded ps-5" type="text" id="id_username" name="username" placeholder="Username...">
     </div>
 
     <div class="mb-3 field">
-      <span class="fa fa-lock ms-3"></span>
+      <span class="fa fa-lock mt-3 ms-3 position-absolute"></span>
       <input required class="rounded ps-5" type="password" id="id_password" name="password" placeholder="Password...">
     </div>
     {% if messages %}

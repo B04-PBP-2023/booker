@@ -5,5 +5,5 @@ app_name = "book"
 
 urlpatterns = [
     path('', get_books, name='get_books'),
-    path('/search', search_books, name='search_books'),
+    path('search/', search_books, name='search_books'),
 ]

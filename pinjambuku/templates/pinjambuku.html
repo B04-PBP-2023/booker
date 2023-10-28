@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="d-flex flex-column justify-content-center">
+  <h3 class="mx-auto center" style="margin-top: 4.5rem;">Peminjaman</h3>
+  <div id="book_card" class="content book_card col-md-5 mt-3 mx-auto position-relative" style="padding: 1.1rem 1.5rem;">
+    <div class="card-body h-100 d-flex flex-column">
+      <div>
+        <h5 class="card-title">{{book.name}}</h5>
+        <h6 class="card-subtitle text-light-emphasis mt-3">Penulis: {{book.author}}</h6>
+        <h6 class="card-subtitle text-light-emphasis mt-2">Tahun: {{book.year}}</h6>
+        <h6 class="card-subtitle text-light-emphasis mt-2">Genre: {{book.genre}}</h6>
+      </div>
+      <div class="mt-auto">
+        <p class="m-0 text-center">Durasi peminjaman (hari)</p>
+        <select id="durasi-select" class="form-select w-50 mx-auto mt-1" aria-label="Default select example">
+          <option selected value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+        </select>
+        <button onclick="pinjam({{id}})" class="w-100 text-center mt-4">
+          Pinjam
+        </button>
+        <button onclick="history.back()" class="w-100 text-center mt-4">
+          Kembali
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+
+  async function pinjam(id) {
+    durasi = document.getElementById('durasi-select').value
+    await fetch(`{% url 'pinjambuku:peminjaman' %}?id=${id}&durasi=${durasi}`)
+  }
+</script>
+{% endblock content %}
