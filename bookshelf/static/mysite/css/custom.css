@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&family=Fanwood+Text:ital@0;1&family=Yeseva+One&family=Zilla+Slab+Highlight:wght@400;700&display=swap');
+
+/* *{
+	font-family: 'Caprasimo', cursive;
+	font-family: 'Fanwood Text', serif;
+	font-family: 'Yeseva One', cursive;
+	font-family: 'Zilla Slab Highlight', serif;
+} */
+
+*{margin: 0; padding: 0; width: 100%; box-sizing: border-box;}
+
+
+.bg 
+{
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100vh;
+}
+
+.navbar-brand{
+    font-family: 'Yeseva One'; color: white; font-size: 50px;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+	opacity: 0.6;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
+}

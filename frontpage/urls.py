@@ -1,5 +1,5 @@
 from django.urls import path
-from frontpage.views import show_frontpage
+from frontpage.views import show_frontpage, bookshelf_view
 
 app_name = 'main'
 

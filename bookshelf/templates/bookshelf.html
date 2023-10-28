@@ -1,0 +1,86 @@
+{% load static %}
+
+<head>
+    <meta charset="UTF-8" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+J4jsl5c9zdLKaUk5Ae5f5b1bw6AUn5f5v8FZJoMxm6f5cH1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'mysite/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'mysite/css/custom.css' %}">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    {% block meta %}
+    {% endblock meta %}
+</head>
+
+<body>
+{% block content %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% endblock content %}
+<div class="container">
+    <div class="navbar sticky-top">
+        <a class="navbar-brand" href="/frontpage/">BOOKER</a>
+        <nav>
+            <a href="/frontpage/">Home</a>
+            <a href="/belibuku/">Beli Buku</a>
+            <a href="/pinjambuku/">Pinjam Buku</a>
+            <a href="/donasibuku/">Donasi Buku</a>
+            <a href="/lamanadmin/">Admin</a>
+        </nav>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-3">
+                <form method="GET">
+                    <div class="card">
+                        <div class="card-body px-4">
+                            <h5>Kategori</h5>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="genre">
+                                <label class="form-check-label" for="genre"> Fiksi </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="genre">
+                                <label class="form-check-label" for="genre"> Non fiksi </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="purchasedbook">
+                                <label class="form-check-label" for="purchasedbook"> Dibeli </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="borrowedbook">
+                                <label class="form-check-label" for="borrowedbook"> Dipinjam </label>
+                            </div>
+                            <div class="text-center">
+                                <a class="btn btn-primary mb-4" href="#" role="button">Ok, Cari</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body px-3">
+                        <h5 class="card-title">contoh</h5>
+                        <p class="card-text">
+                            (buku)
+                        </p>
+                        <div class="text-center">
+                            <a class="btn btn-primary mb-4" href="/reviewbuku/" role="button">Review Buku</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
