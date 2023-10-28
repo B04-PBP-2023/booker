@@ -11,10 +11,10 @@ class Book(models.Model):
     price = models.IntegerField(null=True, blank=True)
     year = models.IntegerField(null=True, blank=True)
     genre = models.TextField(null=True, blank=True)
-    stock = models.IntegerField(null=False, blank=False, default=10)
+    stock = models.IntegerField(null=True, blank=True, default=10)
     points_to_exchange = models.IntegerField(
-        null=False, blank=False, default=100)
-    for_sale = models.BooleanField(null=False, blank=False, default=True)
+        null=True, blank=True, default=100)
+    for_sale = models.BooleanField(null=True, blank=True, default=True)
 
 
 class BorrowedBook(models.Model):
