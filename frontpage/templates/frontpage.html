@@ -15,7 +15,8 @@
   </div>
 </div>
 
-<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top z-0" role="button"><i
+
+<a id="back-to-top" href="#" class="btn btn-light btn-lg content back-to-top px-lg-4 py-lg-3 z-0" role="button"><i
     class="fas fa-chevron-up"></i></a>
 <div class="row justify-content-center p-2" id="book_cards"></div>
 
@@ -151,7 +152,7 @@
   async function refreshCards(books) {
     let htmlString = ""
     books.forEach((book) => {
-      htmlString += `<div id="book_card" class="content book_card col-md-5 mx-3 my-3">
+      htmlString += `<div id="book_card" class="content book_card col-md-5 mx-3 my-3 position-relative" style="padding: 1.1rem 1.5rem">
         <div class="card-body h-100 d-flex flex-column">
           <div>
             <h5 class="card-title">${book.fields.name}</h5>
