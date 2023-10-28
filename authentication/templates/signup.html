@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block meta %}
+<link href="{% static 'style.css' %}" rel="stylesheet">
+{% endblock meta %}
+
+{% block content %}
+<br><br>
+<div class="container content w-xl-25 w-lg-50 w-md-50 w-sm-100 py-4 px-4 mt-5 m-2 mx-auto">
+  <h3>Daftar</h3>
+  <form method="POST" id="form">
+    {% csrf_token %}
+    <div class="mb-3 field d-flex flex-column">
+      <span class="fa fa-user ms-3"></span>
+      <input required class="rounded ps-5" type="text" id="id_username" name="username" placeholder="Username...">
+      <small class="form-text text-muted">Wajib diisi. Maksimal 150 karakter. Hanya alfanumerik dan simbol
+        (@/./+/-/_./). </small>
+    </div>
+    <div class="mb-3 field d-flex flex-column">
+      <span class="fa fa-lock ms-3"></span>
+      <input required class="rounded ps-5" type="password" id="id_password1" name="password1" placeholder="Password...">
+    </div>
+    <div class="mb-3 field d-flex flex-column">
+      <span class="fa fa-lock ms-3"></span>
+      <input required class="rounded ps-5" type="password" id="id_password2" name="password2"
+        placeholder="Konfirmasi password...">
+      <small class="form-text text-muted">Masukkan password kembali untuk konfirmasi.</small>
+    </div>
+    {% if form.errors %}
+    {% for field in form %}
+    {% for error in field.errors %}
+    <p>{{ error }} </p>
+    {% endfor %}
+    {% endfor %}
+    {% endif %}
+    <input class="w-100 blue-button mt-3" type="submit" name="" value="Daftar">
+  </form>
+</div>
+{% endblock content %}

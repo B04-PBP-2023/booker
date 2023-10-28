@@ -20,7 +20,7 @@ Booker adalah aplikasi web untuk meminjam, mendonasikan, dan membeli buku. Aplik
 
 ## Dataset Buku yang Digunakan
 
-Kita akan menggunakan [Google Books API](https://developers.google.com/books/).
+Kita akan menggunakan Kaggle.
 
 ## Role
 
