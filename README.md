@@ -1,5 +1,7 @@
 # Kelompok B04 (Booker)
 
+![Pipeline Status](https://github.com/B04-PBP-2023/booker/actions/workflows/pbp-deploy.yml/badge.svg)
+
 Website : http://booker-b04-tk.pbp.cs.ui.ac.id
 
 ## Nama-Nama Anggota Kelompok
