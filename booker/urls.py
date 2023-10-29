@@ -23,5 +23,6 @@ urlpatterns = [
     path('bookshelf/', include('bookshelf.urls')),
     path('pinjambuku/', include('pinjambuku.urls')),
     path('api/books', include('book.urls')),
-    path('authentication/', include('authentication.urls'))
+    path('authentication/', include('authentication.urls')),
+    path('', include('lamanadmin.urls')),
 ]
