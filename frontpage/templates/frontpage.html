@@ -1,14 +1,129 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% load static %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+{% block content %}
+<div>
+  <div class="container">
+    <div class="d-flex flex-row justify-content-center">
+      <div class="searchbar field w-75 w-lg-50">
+        <input id="search_input" class="search_input" type="text" name="" placeholder="Cari buku, penulis, genre...">
+        <span id="search_button_frontpage" class="content rounded-circle"><button
+            class="fas fa-search w-100"></button></span>
+      </div>
+    </div>
+  </div>
 
-<body>
-  <h1>HALO DUNIYA</h1>
-</body>
+  <a id="back-to-top" href="#" class="btn btn-light btn-lg content back-to-top px-lg-4 py-lg-3 z-0" role="button"><i
+      class="fas fa-chevron-up"></i></a>
+  <div class="row justify-content-center p-2" id="book_cards"></div>
+</div>
 
-</html>
+
+<style>
+  body,
+  html {
+    margin: 0;
+    padding: 0;
+  }
+
+  div .container {
+    margin-top: 4.5em;
+    margin-bottom: 1em;
+  }
+</style>
+
+<script>
+
+  document.addEventListener("DOMContentLoaded", function (event) {
+    // put your javascript code here
+    async function searchBooks(q) {
+      books = await fetch(`{% url 'book:search_books'%}` + `?q=${q}`).then((res) => res.json());
+      await refreshCards(books);
+    }
+
+    async function getBooks() {
+      books = await fetch("{% url 'book:get_books' %}").then((res) => res.json());
+      await refreshCards(books);
+    }
+
+    async function refreshCards(books) {
+      let htmlString = ""
+      books.forEach((book) => {
+        htmlString += `<div id="book_card" class="content book_card col-md-5 mx-3 my-3 position-relative" style="padding: 1.1rem 1.5rem">
+          <div class="card-body h-100 d-flex flex-column">
+            <div>
+              <h5 class="card-title">${book.fields.name}</h5>
+              <h6 class="card-subtitle text-light-emphasis mt-3">Penulis: ${book.fields.author}</h6>
+              <h6 class="card-subtitle text-light-emphasis mt-2">Tahun: ${book.fields.year}</h6>
+              <h6 class="card-subtitle text-light-emphasis mt-2">Genre: ${book.fields.genre}</h6>
+            </div>
+            <div class="mt-auto">
+              <div class="d-flex flex-row justify-content-between mb-3 px-2">
+                <h5 class="d-inline card-subtitle">
+                  <span class="fa fa-dollar-sign me-1"></span>${book.fields.price}
+                </h5>
+                <h5 class="d-inline card-subtitle">
+                  <span class="fa fa-star checked"></span>
+                  ${book.fields.rating}
+                </h5>
+              </div>
+              <a href="{% url 'pinjambuku:show_pinjam_buku' %}?id=${book.pk}">
+                <button class="w-100 text-center">
+                  Pinjam
+                </button>
+              </a>
+              <a href="{% url 'belibuku:show_beli_buku' %}?id=${book.pk}">
+                <button class="w-100 text-center mt-3">
+                  Beli
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>`
+      })
+
+      document.getElementById("book_cards").innerHTML = htmlString
+    }
+
+
+
+    search_button = document.getElementById("search_button_frontpage");
+    console.log(search_button)
+    search_button.addEventListener("click", async () => {
+      query = document.getElementById("search_input").value;
+      await searchBooks(query)
+    })
+
+    input = document.getElementById("search_input");
+    console.log(input)
+    input.addEventListener("keypress", async (event) => {
+      // If the user presses the "Enter" key on the keyboard
+      if (event.key === "Enter") {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        query = document.getElementById("search_input").value;
+        await searchBooks(query)
+      }
+    });
+
+    getBooks()
+  });
+
+  $(document).ready(function () {
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > 50) {
+        $('#back-to-top').fadeIn();
+      } else {
+        $('#back-to-top').fadeOut();
+      }
+    });
+    // scroll body to 0px on click
+    $('#back-to-top').click(function () {
+      $('body,html').animate({
+        scrollTop: 0
+      }, 100);
+      return false;
+    });
+  });
+</script>
+{% endblock content %}

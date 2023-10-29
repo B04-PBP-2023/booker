@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="d-flex flex-column justify-content-center">
+  <h3 class="mx-auto center" style="margin-top: 4.5rem;">Review</h3>
+  <p class="mx-auto center">Setelah mengirimkan review, kamu akan mendapat <b>10 poin</b></p>
+  <div id="book_card" class="content book_card col-md-5 mt-3 mx-auto position-relative" style="padding: 1.1rem 1.5rem;">
+    <div class="card-body h-100 d-flex flex-column">
+      <div>
+        <h5 class="card-title">{{book.name}}</h5>
+        <h6 class="card-subtitle text-light-emphasis mt-3">Penulis: {{book.author}}</h6>
+        <h6 class="card-subtitle text-light-emphasis mt-2">Tahun: {{book.year}}</h6>
+        <h6 class="card-subtitle text-light-emphasis mt-2">Genre: {{book.genre}}</h6>
+      </div>
+      <div class="mt-auto">
+        <p class="m-0 text-center">Rating kamu (1-5): </p>
+        <select id="rating-select" class="form-select w-50 mx-auto mt-1" aria-label="Default select example">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option selected value="5">5</option>
+        </select>
+        <button onclick="review({{id}})" class="w-100 text-center mt-4">
+          Kirim review
+        </button>
+        <button onclick="history.back()" class="w-100 text-center mt-4">
+          Kembali
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+
+  async function review(id) {
+    rating = document.getElementById('rating-select').value
+    await fetch(`{% url 'reviewbuku:review' %}?id=${id}&rating=${rating}`).then((res) => {
+      if (res.status === 201) {
+        window.location.replace("{% url 'bookshelf:show_bookshelf' %}");
+      } else {
+        alert("Gagal melakukan review")
+      }
+    })
+  }
+</script>
+{% endblock content %}
