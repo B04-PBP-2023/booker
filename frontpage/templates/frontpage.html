@@ -2,20 +2,21 @@
 {% load static %}
 
 {% block content %}
-<div class="container h-100">
-  <div class="d-flex justify-content-center h-100">
-    <div class="searchbar field w-75 w-lg-50">
-      <input id="search_input" class="search_input" type="text" name="" placeholder="Cari buku, penulis, genre...">
-      <span id="search_button_frontpage" class="content rounded-circle"><button
-          class="fas fa-search w-100"></button></span>
+<div>
+  <div class="container">
+    <div class="d-flex flex-row justify-content-center">
+      <div class="searchbar field w-75 w-lg-50">
+        <input id="search_input" class="search_input" type="text" name="" placeholder="Cari buku, penulis, genre...">
+        <span id="search_button_frontpage" class="content rounded-circle"><button
+            class="fas fa-search w-100"></button></span>
+      </div>
     </div>
   </div>
+
+  <a id="back-to-top" href="#" class="btn btn-light btn-lg content back-to-top px-lg-4 py-lg-3 z-0" role="button"><i
+      class="fas fa-chevron-up"></i></a>
+  <div class="row justify-content-center p-2" id="book_cards"></div>
 </div>
-
-
-<a id="back-to-top" href="#" class="btn btn-light btn-lg content back-to-top px-lg-4 py-lg-3 z-0" role="button"><i
-    class="fas fa-chevron-up"></i></a>
-<div class="row justify-content-center p-2" id="book_cards"></div>
 
 
 <style>
@@ -26,7 +27,7 @@
   }
 
   div .container {
-    margin-top: 5em;
+    margin-top: 4.5em;
     margin-bottom: 1em;
   }
 </style>
@@ -69,12 +70,13 @@
               <a href="{% url 'pinjambuku:show_pinjam_buku' %}?id=${book.pk}">
                 <button class="w-100 text-center">
                   Pinjam
-                  
                 </button>
               </a>
-              <button class="w-100 text-center mt-3">
-                Beli
-              </button>
+              <a href="{% url 'belibuku:show_beli_buku' %}?id=${book.pk}">
+                <button class="w-100 text-center mt-3">
+                  Beli
+                </button>
+              </a>
             </div>
           </div>
         </div>`
@@ -88,7 +90,6 @@
     search_button = document.getElementById("search_button_frontpage");
     console.log(search_button)
     search_button.addEventListener("click", async () => {
-      console.log("asdflsdf")
       query = document.getElementById("search_input").value;
       await searchBooks(query)
     })

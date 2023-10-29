@@ -2,13 +2,12 @@
 {% load static %}
 
 {% block content %}
-<br><br>
-<div class="mt-4 d-flex flex-column">
+<div>
   <div class="container">
     <div class="d-flex justify-content-center h-100">
       <div class="searchbar field w-75 w-lg-50">
         <input id="search_input" class="search_input" type="text" name="" placeholder="Cari buku, penulis, genre...">
-        <span id="search_button_frontpage" class="content rounded-circle"><button
+        <span id="search_button_bookshelf" class="content rounded-circle"><button
             class="fas fa-search w-100"></button></span>
       </div>
     </div>
@@ -23,6 +22,11 @@
 </div>
 
 <style>
+  div .container {
+    margin-top: 4.5em;
+    margin-bottom: 1em;
+  }
+
   button.select {
     width: 10rem;
   }
@@ -46,11 +50,33 @@
     });
   });
 
-  document.addEventListener("DOMContentLoaded", function (event) {
-    // put your javascript code here
+  async function searchBookshelf(q) {
+    books = await fetch(`{% url 'bookshelf:search_bookshelf_items'%}` + `?borrow=${is_borrow}&q=${q}`).then((res) => res.json());
+    await refreshCards(books);
+  }
+
+  search_button = document.getElementById("search_button_bookshelf");
+  console.log(search_button)
+  search_button.addEventListener("click", async () => {
+    query = document.getElementById("search_input").value;
+    await searchBookshelf(query)
+  })
+
+  input = document.getElementById("search_input");
+  console.log(input)
+  input.addEventListener("keypress", async (event) => {
+    // If the user presses the "Enter" key on the keyboard
+    if (event.key === "Enter") {
+      // Cancel the default action, if needed
+      event.preventDefault();
+      query = document.getElementById("search_input").value;
+      await searchBookshelf(query)
+    }
   });
 
-  getBookshelf(1)
+
+
+
   async function getBookshelf(q) {
     books = await fetch("{% url 'bookshelf:get_bookshelf_items' %}" + `?borrow=${q}`).then((res) => res.json());
     await refreshCards(books, q);
@@ -59,9 +85,11 @@
   async function refreshCards(books, q) {
     let htmlString = ""
     if (q === 1) {
+      is_borrow = 1
       document.getElementById("dibeli-btn").style = "box-shadow: 2px 2px 5px #babecc, -5px -5px 10px #ffffff73;"
       document.getElementById("dipinjam-btn").style = "box-shadow: inset 2px 2px 5px #babecc,inset -5px -5px 10px #ffffff73;"
     } else if (q === 0) {
+      is_borrow = 0
       document.getElementById("dibeli-btn").style = "box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #ffffff73;"
       document.getElementById("dipinjam-btn").style = "box-shadow: 2px 2px 5px #babecc, -5px -5px 10px #ffffff73;"
     }
@@ -69,35 +97,32 @@
       htmlString += `<div id="book_card" class="content book_card col-md-5 mx-3 my-3 position-relative" style="padding: 1.1rem 1.5rem">
         <div class="card-body h-100 d-flex flex-column">
           <div>
-            <h5 class="card-title">${book.fields.name}</h5>
-            <h6 class="card-subtitle text-light-emphasis mt-3">Penulis: ${book.fields.author}</h6>
-            <h6 class="card-subtitle text-light-emphasis mt-2">Tahun: ${book.fields.year}</h6>
-            <h6 class="card-subtitle text-light-emphasis mt-2">Genre: ${book.fields.genre}</h6>
+            <h5 class="card-title">${book.book.name}</h5>
+            <h6 class="card-subtitle text-light-emphasis mt-3">Penulis: ${book.book.author}</h6>
+            <h6 class="card-subtitle text-light-emphasis mt-2">Tahun: ${book.book.year}</h6>
+            <h6 class="card-subtitle text-light-emphasis mt-2">Genre: ${book.book.genre}</h6>
           </div>
           <div class="mt-auto">
-            <div class="d-flex flex-row justify-content-between mb-3 px-2">
-              <h5 class="d-inline card-subtitle">
-                <span class="fa fa-dollar-sign me-1"></span>${book.fields.price}
-              </h5>
-              <h5 class="d-inline card-subtitle">
-                <span class="fa fa-star checked"></span>
-                ${book.fields.rating}
-              </h5>
-            </div>
+            ${q === 1 ? `<p class="w-100 text-center">
+              Tanggal pengembalian:<br>${book.end_date}
+            </p>` : ''}
             ${q === 1 ? `<button class="w-100 text-center">
               Kembalikan
             </button>` : ''}
+            <a href="{% url 'reviewbuku:show_review_buku' %}?id=${book.book.id}" >
             <button class="w-100 text-center mt-3">
               Review
             </button>
+          </a>
           </div>
         </div>
       </div>`
     })
-
+    console.log(is_borrow)
     document.getElementById("bookshelf_cards").innerHTML = htmlString
   }
 
-
+  is_borrow = 1
+  getBookshelf(1)
 </script>
 {% endblock content %}

@@ -13,7 +13,7 @@ from datetime import datetime, timedelta, date
 # Create your views here.
 
 
-@login_required
+@login_required(login_url='/authentication/login/')
 def show_pinjam_buku(request):
     id = request.GET.get('id')
     book = Book.objects.get(pk=id)
@@ -25,19 +25,23 @@ def show_pinjam_buku(request):
 
 
 @csrf_exempt
-@login_required
+@login_required(login_url='/authentication/login/')
 @require_http_methods(["GET"])
 def peminjaman(request):
-    id = request.GET.get('id')
-    user = request.user
     try:
+        id = int(request.GET.get('id'))
         durasi = int(request.GET.get('durasi'))
+        book = Book.objects.get(pk=id)
     except:
         return HttpResponseBadRequest()
-    book = Book.objects.get(pk=id)
+
+    if (not (1 <= durasi <= 7)):
+        return HttpResponseBadRequest()
+
+    user = request.user
     start_date = date.today()
     end_date = start_date + timedelta(days=durasi)
     new_borrowed_book = BorrowedBook(
         user=user, book=book, start_date=start_date, end_date=end_date)
     new_borrowed_book.save()
-    return HttpResponseRedirect(reverse('bookshelf:show_bookshelf'))
+    return HttpResponse(b"CREATED", status=201)
