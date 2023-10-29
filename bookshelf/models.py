@@ -3,11 +3,10 @@ from authentication.models import User
 
 from book.models import Book
 
-class Bookshelf(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+class Category(models.Model):
+    name = models.CharField(max_length=50)
 
-class Bookmark(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+class Bookshelf(models.Model):
+    category = models.OneToOneField(Category, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    added_date = models.DateTimeField(auto_now_add=True)

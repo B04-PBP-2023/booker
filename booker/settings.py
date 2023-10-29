@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'reviewbuku',
     'lamanadmin',
     'authentication',
-    # 'fontawesomefree',
+    'fontawesomefree',
 ]
 
 MIDDLEWARE = [
