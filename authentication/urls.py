@@ -5,7 +5,7 @@ from authentication.views import UserSignUp, AdminSignUp, login_user, logout_use
 app_name = 'authentication'
 
 urlpatterns = [
-    # path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('signup/', UserSignUp.as_view(), name='signup'),
     path('admin-signup/', AdminSignUp.as_view(), name='admin_signup'),
     path('login/', login_user, name='login_user'),
