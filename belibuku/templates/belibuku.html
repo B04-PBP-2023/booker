@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container h-100 w-100">
+  <div class="d-flex flex-column justify-content-center">
+    <h3 class="mx-auto center" style="margin-top: 4.5rem;">Pembelian</h3>
+    <div id="book_card" class="content book_card col-md-5 mt-3 mx-auto position-relative"
+      style="padding: 1.1rem 1.5rem;">
+      <div class="card-body h-100 d-flex flex-column">
+        <div>
+          <h5 class="card-title">{{book.name}}</h5>
+          <h6 class="card-subtitle text-light-emphasis mt-3">Penulis: {{book.author}}</h6>
+          <h6 class="card-subtitle text-light-emphasis mt-2">Tahun: {{book.year}}</h6>
+          <h6 class="card-subtitle text-light-emphasis mt-2">Genre: {{book.genre}}</h6>
+        </div>
+        <div class="mt-auto">
+          <div class="d-flex flex-row justify-content-between align-content-center px-2">
+            <h5 class="d-inline card-subtitle mx-auto">
+              <span class="fa fa-dollar-sign me-1"></span>{{book.price}}
+            </h5>
+          </div>
+          <button onclick="beli({{id}})" class="w-100 text-center mt-2">
+            Beli
+          </button>
+          <button onclick="beliDenganPoin({{id}})" class="w-100 text-center mt-3">
+            Beli dengan 100 poin
+          </button>
+          <button onclick="history.back()" class="w-100 text-center mt-3">
+            Kembali
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  async function beli(id) {
+    await fetch(`{% url 'belibuku:pembelian' %}?id=${id}`).then((res) => {
+      if (res.status === 201) {
+        window.location.replace("{% url 'bookshelf:show_bookshelf' %}");
+      } else {
+        alert("Gagal melakukan pembelian")
+      }
+    })
+  }
+
+  async function beliDenganPoin(id) {
+    await fetch(`{% url 'belibuku:pembelian_dengan_poin' %}?id=${id}`).then((res) => {
+      if (res.status === 201) {
+        window.location.replace("{% url 'bookshelf:show_bookshelf' %}");
+      } else {
+        alert("Gagal melakukan pembelian dengan poin")
+      }
+    })
+  }
+</script>
+{% endblock content %}

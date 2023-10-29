@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'lamanadmin',
     'authentication',
     'fontawesomefree',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
