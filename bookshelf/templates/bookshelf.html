@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% load static %}
 
 <head>
@@ -6,81 +7,229 @@
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+J4jsl5c9zdLKaUk5Ae5f5b1bw6AUn5f5v8FZJoMxm6f5cH1" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'mysite/css/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'mysite/css/custom.css' %}">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     {% block meta %}
     {% endblock meta %}
 </head>
-
-<body>
 {% block content %}
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-{% endblock content %}
+<body>
 <div class="container">
-    <div class="navbar sticky-top">
-        <a class="navbar-brand" href="/frontpage/">BOOKER</a>
-        <nav>
-            <a href="/frontpage/">Home</a>
-            <a href="/belibuku/">Beli Buku</a>
-            <a href="/pinjambuku/">Pinjam Buku</a>
-            <a href="/donasibuku/">Donasi Buku</a>
-            <a href="/lamanadmin/">Admin</a>
-        </nav>
+    <h2>Bookshelf Recommendation</h2> <button href="{% url 'bookshelf:view_bookmarks' %}" class="btn justify-content-center">View Bookmarks</button>
+    <div class="scroll-container">
+        <div class="spacer"></div>
+        <div class="row justify-content-left p-5" id="category_card"></div>
     </div>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-3">
-                <form method="GET">
-                    <div class="card">
-                        <div class="card-body px-4">
-                            <h5>Kategori</h5>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="genre">
-                                <label class="form-check-label" for="genre"> Fiksi </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="genre">
-                                <label class="form-check-label" for="genre"> Non fiksi </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="purchasedbook">
-                                <label class="form-check-label" for="purchasedbook"> Dibeli </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="borrowedbook">
-                                <label class="form-check-label" for="borrowedbook"> Dipinjam </label>
-                            </div>
-                            <div class="text-center">
-                                <a class="btn btn-primary mb-4" href="#" role="button">Ok, Cari</a>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body px-3">
-                        <h5 class="card-title">contoh</h5>
-                        <p class="card-text">
-                            (buku)
-                        </p>
-                        <div class="text-center">
-                            <a class="btn btn-primary mb-4" href="/reviewbuku/" role="button">Review Buku</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <h2>Bookshelf</h2>
+    <div>
+      <div class="spacer"></div>
+      <div class="row justify-content-left p-5" id="added_card"></div>
     </div>
 </div>
 </body>
+<style>
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+  }
+    #category_card {
+        width: auto;
+        height: 26rem;
+  }
+  
+    .scroll-container {
+        display: flex;
+        margin-bottom: auto;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        white-space: nowrap;
+}
+    button.btn {
+        width: auto;
+        padding: 0 20px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .spacer {
+        flex-grow: 1;
+    }
+
+    .card {
+        margin-right: auto;
+        padding: 1.1rem 1.5rem;
+    }
+
+    #filter-card{
+        width: 20vw;
+        height: 20vh;
+    }
+
+    .button-container {
+        text-align: center;
+    }
+
+    .cards-container {
+        display: flex; 
+        flex-wrap: nowrap; 
+        overflow-x: auto;
+  }
+
+    div .container {
+        margin-top: 5em;
+        margin-bottom: 1em;
+  }
+  
+    .card-title {
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+  }
+
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+   async function getRecommendations() {
+    const recommendations = await fetch("{% url 'bookshelf:get_recommendations' %}").then((res) => res.json());
+    await refreshCards(recommendations);
+}
+    async function getBookshelf() {
+      const bookshelf_recc = await fetch("{% url 'bookshelf:show_bookshelf_json' %}").then((res) => res.json());
+      await refreshBookshelf(bookshelf_recc)
+    }
+
+    async function refreshCards(books) {
+    let htmlString = ""
+    books.forEach((book) => {
+      htmlString += `
+      <div id="category_card" class="content category_card col-md-5 mx-3 my-3 position-relative" style="padding: 1.1rem 1.5rem">
+        <div class="card-body h-100 d-flex flex-column">
+          <div>
+            <h5 class="card-title">${book.fields.name}</h5>
+            <h6 class="card-subtitle text-light-emphasis mt-3">Penulis: ${book.fields.author}</h6>
+            <h6 class="card-subtitle text-light-emphasis mt-2">Tahun: ${book.fields.year}</h6>
+            <h6 class="card-subtitle text-light-emphasis mt-2">Genre: ${book.fields.genre}</h6>
+          </div>
+          <div class="mt-auto">
+            <div class="d-flex flex-row justify-content-between mb-3 px-2">
+              <h5 class="d-inline card-subtitle">
+                <span class="fa fa-dollar-sign me-1"></span>${book.fields.price}
+              </h5>
+              <h5 class="d-inline card-subtitle">
+                <span class="fa fa-star checked"></span>
+                ${book.fields.rating}
+              </h5>
+            </div>
+            <button class="add-to-bookshelf w-50" onclick="addtoBookshelf(${book.pk})">Add to Bookshelf</button>
+          </div>
+        </div>
+      </div>`
+    })
+    document.getElementById("category_card").innerHTML = htmlString
+  }
+  getRecommendations()
+
+  async function refreshBookshelf(books) {
+    let htmlString = ""
+    books.forEach((book) => {
+      htmlString += `
+      <div id="added_card" class="content category_card col-md-5 mx-3 my-3 position-relative" style="padding: 1.1rem 1.5rem">
+        <div class="card-body h-100 d-flex flex-column">
+          <div>
+            <h5 class="card-title">${book.fields.name}</h5>
+            <h6 class="card-subtitle text-light-emphasis mt-3">Penulis: ${book.fields.author}</h6>
+            <h6 class="card-subtitle text-light-emphasis mt-2">Tahun: ${book.fields.year}</h6>
+            <h6 class="card-subtitle text-light-emphasis mt-2">Genre: ${book.fields.genre}</h6>
+          </div>
+          <div class="mt-auto">
+            <div class="d-flex flex-row justify-content-between mb-3 px-2">
+              <h5 class="d-inline card-subtitle">
+                <span class="fa fa-dollar-sign me-1"></span>${book.fields.price}
+              </h5>
+              <h5 class="d-inline card-subtitle">
+                <span class="fa fa-star checked"></span>
+                ${book.fields.rating}
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>`
+    })
+    document.getElementById("added_card").innerHTML = htmlString
+  }
+  getBookshelf()
+    
+    function addtoBookshelf(book_id) {
+        fetch(`/bookshelf/add/${book_id}/`, {
+            method: "POST",
+        }).then(getBookshelf)
+        return false
+    }
+  
+    async function getBooks() {
+    books = await fetch("{% url 'book:get_books' %}").then((res) => res.json());
+    await refreshCardsFilter(books);
+  }
+
+    async function refreshCardsFilter(books) {
+    books.forEach((book) => {
+      htmlString += `
+      <div id="category_card_filter" class="content category_card col-md-5 mx-3 my-3 position-relative" style="padding: 1.1rem 1.5rem">
+        <div class="card-body h-100 d-flex flex-column">
+          <div>
+            <h5 class="card-title">${book.fields.name}</h5>
+            <h6 class="card-subtitle text-light-emphasis mt-3">Penulis: ${book.fields.author}</h6>
+            <h6 class="card-subtitle text-light-emphasis mt-2">Tahun: ${book.fields.year}</h6>
+            <h6 class="card-subtitle text-light-emphasis mt-2">Genre: ${book.fields.genre}</h6>
+          </div>
+          <div class="mt-auto">
+            <div class="d-flex flex-row justify-content-between mb-3 px-2">
+              <h5 class="d-inline card-subtitle">
+                <span class="fa fa-dollar-sign me-1"></span>${book.fields.price}
+              </h5>
+              <h5 class="d-inline card-subtitle">
+                <span class="fa fa-star checked"></span>
+                ${book.fields.rating}
+              </h5>
+            </div>
+          </div>
+          <button class="bookmark-icon" onclick="toggleBookmark(${book.id})"><span class="fa-regular fa-bookmark"></span></button>
+        </div>
+      </div>`
+    })
+
+    document.getElementById("filter-button").addEventListener("click", function () 
+    {
+    const selectedGenre = document.getElementById("genre-filter").value;
+    
+    const filteredBooks = books.filter(book => book.fields.genre === selectedGenre);
+
+    refreshCardsFilter(filteredBooks);
+    });
+  }
+
+  $(document).ready(function () {
+        // Add Bookmark
+        $('.add-bookmark-button').on('click', function () {
+            const bookId = $(this).data('book-id');
+            $.post('/add-bookmark/', { book_id: bookId }, function (data) {
+                alert(data.message);
+            });
+        });
+
+        // Remove Bookmark
+        $('.remove-bookmark-button').on('click', function () {
+            const bookId = $(this).data('book-id');
+            $.post('/remove-bookmark/', { book_id: bookId }, function (data) {
+                alert(data.message);
+            });
+        });
+    });
+</script>
+{% endblock content %}

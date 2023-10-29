@@ -1,7 +1,8 @@
 from django.forms import ModelForm
-from bookshelf.models import Book
+from bookshelf.models import Bookshelf
+from django import forms
 
-class BookForm(ModelForm):
+class BookshelfForm(ModelForm):
     class Meta:
-        model = Book
-        fields = ['title', 'books', 'selected_category', 'sort_by']
+        model = Bookshelf
+        fields = ['user', 'book']
