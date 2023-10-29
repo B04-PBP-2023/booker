@@ -22,6 +22,10 @@ urlpatterns = [
     path('', include('frontpage.urls')),
     path('bookshelf/', include('bookshelf.urls')),
     path('pinjambuku/', include('pinjambuku.urls')),
+    path('belibuku/', include('belibuku.urls')),
+    path('reviewbuku/', include('reviewbuku.urls')),
+    path('donasibuku/', include('donasibuku.urls')),
     path('api/books', include('book.urls')),
-    path('authentication/', include('authentication.urls'))
+    path('authentication/', include('authentication.urls')),
+    path('api-auth/', include('rest_framework.urls'))
 ]

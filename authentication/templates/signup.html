@@ -4,8 +4,7 @@
 
 
 {% block content %}
-<br><br>
-<div class="container content w-xl-25 w-lg-50 w-md-50 w-sm-100 py-4 px-4 mt-5 m-2 mx-auto">
+<div class="container content w-xl-25 w-lg-50 w-md-50 w-sm-100 py-4 px-4 mx-auto">
   <h3>Daftar</h3>
   <form method="POST" id="form">
     {% csrf_token %}
@@ -35,4 +34,11 @@
     <input class="w-100 blue-button mt-3" type="submit" name="" value="Daftar">
   </form>
 </div>
+
+<style>
+  div .container {
+    margin-top: 6em;
+    margin-bottom: 1em;
+  }
+</style>
 {% endblock content %}
