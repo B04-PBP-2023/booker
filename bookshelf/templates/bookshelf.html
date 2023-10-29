@@ -1,72 +1,114 @@
 {% extends 'base.html' %}
 {% load static %}
 
+<head>
+    <meta charset="UTF-8" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+    <link rel="stylesheet" href="{% static 'mysite/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'mysite/css/custom.css' %}">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    {% block meta %}
+    {% endblock meta %}
+</head>
 {% block content %}
-<br><br>
-<div class="mt-4 d-flex flex-column">
-  <div class="container">
-    <div class="d-flex justify-content-center h-100">
-      <div class="searchbar field w-75 w-lg-50">
-        <input id="search_input" class="search_input" type="text" name="" placeholder="Cari buku, penulis, genre...">
-        <span id="search_button_frontpage" class="content rounded-circle"><button
-            class="fas fa-search w-100"></button></span>
-      </div>
+<body>
+<div class="container">
+    <h2>Bookshelf Recommendation</h2> <button href="{% url 'bookshelf:view_bookmarks' %}" class="btn justify-content-center">View Bookmarks</button>
+    <div class="scroll-container">
+        <div class="spacer"></div>
+        <div class="row justify-content-left p-5" id="category_card"></div>
     </div>
-  </div>
-  <div class="d-flex flex-row justify-content-center mt-3">
-    <button onclick="getBookshelf(1)" id="dipinjam-btn" class="rounded-start-pill select">Dipinjam</button>
-    <button onclick="getBookshelf(0)" id="dibeli-btn" class="rounded-end-pill ms-3 select">Dibeli</button>
-  </div>
-  <a id="back-to-top" href="#" class="btn btn-light btn-lg content back-to-top px-lg-4 py-lg-3 z-0" role="button"><i
-      class="fas fa-chevron-up"></i></a>
-  <div class="row justify-content-center p-2" id="bookshelf_cards"></div>
+    <h2>Bookshelf</h2>
+    <div>
+      <div class="spacer"></div>
+      <div class="row justify-content-left p-5" id="added_card"></div>
+    </div>
 </div>
-
+</body>
 <style>
-  button.select {
-    width: 10rem;
+    body,
+    html {
+        margin: 0;
+        padding: 0;
   }
-</style>
-
-<script>
-  $(document).ready(function () {
-    $(window).scroll(function () {
-      if ($(this).scrollTop() > 50) {
-        $('#back-to-top').fadeIn();
-      } else {
-        $('#back-to-top').fadeOut();
-      }
-    });
-    // scroll body to 0px on click
-    $('#back-to-top').click(function () {
-      $('body,html').animate({
-        scrollTop: 0
-      }, 100);
-      return false;
-    });
-  });
-
-  document.addEventListener("DOMContentLoaded", function (event) {
-    // put your javascript code here
-  });
-
-  getBookshelf(1)
-  async function getBookshelf(q) {
-    books = await fetch("{% url 'bookshelf:get_bookshelf_items' %}" + `?borrow=${q}`).then((res) => res.json());
-    await refreshCards(books, q);
+    #category_card {
+        width: auto;
+        height: 26rem;
   }
-
-  async function refreshCards(books, q) {
-    let htmlString = ""
-    if (q === 1) {
-      document.getElementById("dibeli-btn").style = "box-shadow: 2px 2px 5px #babecc, -5px -5px 10px #ffffff73;"
-      document.getElementById("dipinjam-btn").style = "box-shadow: inset 2px 2px 5px #babecc,inset -5px -5px 10px #ffffff73;"
-    } else if (q === 0) {
-      document.getElementById("dibeli-btn").style = "box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #ffffff73;"
-      document.getElementById("dipinjam-btn").style = "box-shadow: 2px 2px 5px #babecc, -5px -5px 10px #ffffff73;"
+  
+    .scroll-container {
+        display: flex;
+        margin-bottom: auto;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        white-space: nowrap;
+}
+    button.btn {
+        width: auto;
+        padding: 0 20px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        text-align: center;
     }
+
+    .spacer {
+        flex-grow: 1;
+    }
+
+    .card {
+        margin-right: auto;
+        padding: 1.1rem 1.5rem;
+    }
+
+    #filter-card{
+        width: 20vw;
+        height: 20vh;
+    }
+
+    .button-container {
+        text-align: center;
+    }
+
+    .cards-container {
+        display: flex; 
+        flex-wrap: nowrap; 
+        overflow-x: auto;
+  }
+
+    div .container {
+        margin-top: 5em;
+        margin-bottom: 1em;
+  }
+  
+    .card-title {
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+  }
+
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+   async function getRecommendations() {
+    const recommendations = await fetch("{% url 'bookshelf:get_recommendations' %}").then((res) => res.json());
+    await refreshCards(recommendations);
+}
+    async function getBookshelf() {
+      const bookshelf_recc = await fetch("{% url 'bookshelf:show_bookshelf_json' %}").then((res) => res.json());
+      await refreshBookshelf(bookshelf_recc)
+    }
+
+    async function refreshCards(books) {
+    let htmlString = ""
     books.forEach((book) => {
-      htmlString += `<div id="book_card" class="content book_card col-md-5 mx-3 my-3 position-relative" style="padding: 1.1rem 1.5rem">
+      htmlString += `
+      <div id="category_card" class="content category_card col-md-5 mx-3 my-3 position-relative" style="padding: 1.1rem 1.5rem">
         <div class="card-body h-100 d-flex flex-column">
           <div>
             <h5 class="card-title">${book.fields.name}</h5>
@@ -84,20 +126,110 @@
                 ${book.fields.rating}
               </h5>
             </div>
-            ${q === 1 ? `<button class="w-100 text-center">
-              Kembalikan
-            </button>` : ''}
-            <button class="w-100 text-center mt-3">
-              Review
-            </button>
+            <button class="add-to-bookshelf w-50" onclick="addtoBookshelf(${book.pk})">Add to Bookshelf</button>
           </div>
         </div>
       </div>`
     })
+    document.getElementById("category_card").innerHTML = htmlString
+  }
+  getRecommendations()
 
-    document.getElementById("bookshelf_cards").innerHTML = htmlString
+  async function refreshBookshelf(books) {
+    let htmlString = ""
+    books.forEach((book) => {
+      htmlString += `
+      <div id="added_card" class="content category_card col-md-5 mx-3 my-3 position-relative" style="padding: 1.1rem 1.5rem">
+        <div class="card-body h-100 d-flex flex-column">
+          <div>
+            <h5 class="card-title">${book.fields.name}</h5>
+            <h6 class="card-subtitle text-light-emphasis mt-3">Penulis: ${book.fields.author}</h6>
+            <h6 class="card-subtitle text-light-emphasis mt-2">Tahun: ${book.fields.year}</h6>
+            <h6 class="card-subtitle text-light-emphasis mt-2">Genre: ${book.fields.genre}</h6>
+          </div>
+          <div class="mt-auto">
+            <div class="d-flex flex-row justify-content-between mb-3 px-2">
+              <h5 class="d-inline card-subtitle">
+                <span class="fa fa-dollar-sign me-1"></span>${book.fields.price}
+              </h5>
+              <h5 class="d-inline card-subtitle">
+                <span class="fa fa-star checked"></span>
+                ${book.fields.rating}
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>`
+    })
+    document.getElementById("added_card").innerHTML = htmlString
+  }
+  getBookshelf()
+    
+    function addtoBookshelf(book_id) {
+        fetch(`/bookshelf/add/${book_id}/`, {
+            method: "POST",
+        }).then(getBookshelf)
+        return false
+    }
+  
+    async function getBooks() {
+    books = await fetch("{% url 'book:get_books' %}").then((res) => res.json());
+    await refreshCardsFilter(books);
   }
 
+    async function refreshCardsFilter(books) {
+    books.forEach((book) => {
+      htmlString += `
+      <div id="category_card_filter" class="content category_card col-md-5 mx-3 my-3 position-relative" style="padding: 1.1rem 1.5rem">
+        <div class="card-body h-100 d-flex flex-column">
+          <div>
+            <h5 class="card-title">${book.fields.name}</h5>
+            <h6 class="card-subtitle text-light-emphasis mt-3">Penulis: ${book.fields.author}</h6>
+            <h6 class="card-subtitle text-light-emphasis mt-2">Tahun: ${book.fields.year}</h6>
+            <h6 class="card-subtitle text-light-emphasis mt-2">Genre: ${book.fields.genre}</h6>
+          </div>
+          <div class="mt-auto">
+            <div class="d-flex flex-row justify-content-between mb-3 px-2">
+              <h5 class="d-inline card-subtitle">
+                <span class="fa fa-dollar-sign me-1"></span>${book.fields.price}
+              </h5>
+              <h5 class="d-inline card-subtitle">
+                <span class="fa fa-star checked"></span>
+                ${book.fields.rating}
+              </h5>
+            </div>
+          </div>
+          <button class="bookmark-icon" onclick="toggleBookmark(${book.id})"><span class="fa-regular fa-bookmark"></span></button>
+        </div>
+      </div>`
+    })
 
+    document.getElementById("filter-button").addEventListener("click", function () 
+    {
+    const selectedGenre = document.getElementById("genre-filter").value;
+    
+    const filteredBooks = books.filter(book => book.fields.genre === selectedGenre);
+
+    refreshCardsFilter(filteredBooks);
+    });
+  }
+
+  $(document).ready(function () {
+        // Add Bookmark
+        $('.add-bookmark-button').on('click', function () {
+            const bookId = $(this).data('book-id');
+            $.post('/add-bookmark/', { book_id: bookId }, function (data) {
+                alert(data.message);
+            });
+        });
+
+        // Remove Bookmark
+        $('.remove-bookmark-button').on('click', function () {
+            const bookId = $(this).data('book-id');
+            $.post('/remove-bookmark/', { book_id: bookId }, function (data) {
+                alert(data.message);
+            });
+        });
+    });
 </script>
 {% endblock content %}
