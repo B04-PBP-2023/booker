@@ -38,6 +38,12 @@
         <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
           <ul class="navbar-nav ms-auto flex-nowrap">
             {% if request.user.is_authenticated %}
+            {% if request.user.is_admin %}
+            <li class="nav-item">
+              <a class="nav-link my-2 mx-lg-2 menu-item text-primary" href="{% url 'lamanadmin:page_admin' %}"><span
+                  class="fas fa-user-cog"></span>Laman Admin</a>
+            </li>
+            {% endif %}
             <li class="nav-item">
               <a href="{% url 'bookshelf:show_bookshelf'%}"
                 class="nav-link text-black my-2 mx-lg-2 menu-item">Bookshelf</a>
