@@ -26,6 +26,9 @@
         <button onclick="pinjam({{id}})" class="w-100 text-center mt-4">
           Pinjam
         </button>
+        <button onclick="kembali_buku({{id}})" class="w-100 text-center mt-4">
+          Kembalikan Buku
+        </button>
         <button onclick="history.back()" class="w-100 text-center mt-4">
           Kembali
         </button>
@@ -35,7 +38,9 @@
 </div>
 
 <script>
-
+  async function kembali_buku(id) {
+    return fetch(`{% url 'pinjambuku:pengembalian'%}?id=${id}`)
+  }
 
   async function pinjam(id) {
     durasi = document.getElementById('durasi-select').value
