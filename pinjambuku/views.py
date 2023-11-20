@@ -10,6 +10,7 @@ from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 from book.models import BorrowedBook, Book
 from datetime import datetime, timedelta, date
+from authentication.models import User
 # Create your views here.
 
 
@@ -22,6 +23,23 @@ def show_pinjam_buku(request):
         'book': book,
     }
     return render(request, 'pinjambuku.html', context)
+
+
+# Fungsi mengembalikan buku
+@csrf_exempt
+@login_required
+@require_http_methods(["GET"])
+def pengembalian(request):
+    id = request.GET.get('id')
+    user = request.user
+    book = Book.objects.get(pk=id)
+    borrowed_book = BorrowedBook.objects.get(book=book)
+    try:
+        borrowed_book.delete()
+        user.points += book.points_to_exchange
+    except:
+        return HttpResponseBadRequest()
+    return HttpResponseRedirect(reverse('bookshelf:show_bookshelf'))
 
 
 @csrf_exempt
