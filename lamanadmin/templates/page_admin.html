@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<link href="{% static 'style.css' %}" rel="stylesheet">
+{% endblock meta %}
+
+{% block content %}
+
+<style>
+  div .container {
+    margin-top: 1em;
+  }
+
+  h1 {
+    margin-top: 5em;
+  }
+
+  canvas {
+    margin-top: 3em;
+  }
+</style>
+
+
+<div class="container h-100">
+  <h1>Data Stok Buku</h1>
+</div>
+<div class="container h-100">
+  <div class="d-flex justify-content-center h-100">
+    <div class="searchbar field w-75 w-lg-50">
+      <input id="search_input" class="search_input" type="text" name="" placeholder="Cari buku, penulis, genre...">
+      <span><button id="search_button" class="fas fa-search" onclick=""></button></span>
+    </div>
+  </div>
+</div>
+<div class="container h-100">
+  <div class="d-flex justify-content-center align-items-center">
+    <table class="table table-sm table-striped table-bordered" id="stock_table">
+    </table>
+  </div>
+</div>
+<br />
+<div class="container h-100">
+  <h1>Data Statistik Stok Peminjaman Buku</h1>
+</div>
+<div class="container h-100">
+  <div class="d-flex justify-content-center align-items-center">
+    <canvas id="labelChartAuthor"></canvas>
+  </div>
+</div>
+<div class="container h-100">
+  <div class="d-flex justify-content-center align-items-center">
+    <canvas id="labelChartYear"></canvas>
+  </div>
+</div>
+<div class="container h-100">
+  <div class="d-flex justify-content-center align-items-center">
+    <canvas id="labelChartGenre"></canvas>
+  </div>
+</div>
+<script>
+
+  search_button = document.getElementById("search_button");
+  search_button.addEventListener("click", async () => {
+    query = document.getElementById("search_input").value;
+    await searchBooks(query)
+  })
+
+  input = document.getElementById("search_input");
+  input.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      document.getElementById("search_button").click();
+    }
+  });
+
+  async function searchBooks(q) {
+    books = await fetch(`{% url 'book:search_books'%}` + `?q=${q}`).then((res) => res.json());
+    await refreshTable(books);
+  }
+
+  async function getBooks() {
+    books = await fetch("{% url 'book:get_books' %}").then((res) => res.json());
+    await refreshTable(books);
+    await refreshCharts(books);
+  }
+
+  async function refreshTable(books) {
+    let htmlString = `<tr class="table-dark">
+            <th>No.</th>
+            <th>Name</th>
+            <th>Author</th>
+            <th>Year</th>
+            <th>Genre</th>
+            <th>Stock</th>
+        </tr>`
+    var a = 1;
+    books.forEach((book) => {
+      htmlString += `\n<tr>
+            <td>${a}</td>
+            <td>${book.fields.name}</td>
+            <td>${book.fields.author}</td>
+            <td>${book.fields.year}</td>
+            <td>${book.fields.genre}</td>
+            <td>${book.fields.stock}</td>
+        </tr>`; a += 1
+    })
+
+    document.getElementById("stock_table").innerHTML = htmlString
+  }
+
+  getBooks()
+
+  async function refreshCharts(books) {
+
+    const xValuesAuthor = []; const yValuesStockAuthor = []; var authorColors = [];
+    var xValuesYear = []; var yValuesStockYear = []; var yearColors = [];
+    var xValuesGenre = ["Non Fiction", "Fiction"]; var yValuesStockGenre = [0, 0]; var genreColors = ["Red", "Blue"];
+
+    books.forEach((book) => {
+      const randomColorMath = Math.floor(Math.random() * 16777215).toString(16);
+      const randomColor = "#" + randomColorMath
+      var authorIndex = xValuesAuthor.findIndex(author => author === book.fields.author);
+      var yearIndex = xValuesYear.findIndex(year => year === book.fields.year);
+
+      if (authorIndex === -1) {
+        xValuesAuthor.push(book.fields.author);
+        yValuesStockAuthor.push(book.fields.stock);
+        authorColors.push(randomColor);
+      } else if (authorIndex !== -1) {
+        yValuesStockAuthor[authorIndex] += book.fields.stock;
+      } if (yearIndex === -1) {
+        xValuesYear.push(book.fields.year);
+        yValuesStockYear.push(book.fields.year);
+        yearColors.push(randomColor);
+      } else if (yearIndex !== -1) {
+        yValuesStockYear[yearIndex] += book.fields.stock;
+      } if (book.fields.genre == "Non Fiction") {
+        yValuesStockGenre[0] += book.fields.stock;
+      } else if (book.fields.genre == "Fiction") {
+        yValuesStockGenre[1] += book.fields.stock;
+      }
+    });
+
+    new Chart("labelChartAuthor", {
+      type: "pie",
+      data: {
+        labels: xValuesAuthor,
+        datasets: [{
+          backgroundColor: authorColors,
+          data: yValuesStockAuthor
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: "Berdasarkan Author"
+        }
+      }
+    });
+    new Chart("labelChartYear", {
+      type: "pie",
+      data: {
+        labels: xValuesYear,
+        datasets: [{
+          backgroundColor: yearColors,
+          data: yValuesStockYear
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: "Berdasarkan Tahun"
+        }
+      }
+    });
+    new Chart("labelChartGenre", {
+      type: "pie",
+      data: {
+        labels: xValuesGenre,
+        datasets: [{
+          backgroundColor: genreColors,
+          data: yValuesStockGenre
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: "Berdasarkan Genre"
+        }
+      }
+    });
+  }
+
+</script>
+{% endblock content %}
