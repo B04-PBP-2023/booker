@@ -6,12 +6,14 @@ from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import redirect
 from django.views.generic import CreateView
 from django.views.decorators.http import require_http_methods
+from django.views.decorators.csrf import csrf_exempt
 from authentication.models import User
 from authentication.forms import UserSignUpForm, AdminSignUpForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.http import HttpResponse
 from django.core import serializers
+from django.http import JsonResponse
 # Create your views here.
 
 
@@ -74,3 +76,30 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('frontpage:show_frontpage'))
     response.delete_cookie('last_login')
     return response
+
+
+@csrf_exempt
+def login_mobile(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
+            login(request, user)
+            # Status login sukses.
+            return JsonResponse({
+                "username": user.username,
+                "status": True,
+                "message": "Login sukses!"
+            }, status=200)
+        else:
+            return JsonResponse({
+                "status": False,
+                "message": "Login gagal, akun dinonaktifkan."
+            }, status=401)
+
+    else:
+        return JsonResponse({
+            "status": False,
+            "message": "Login gagal, periksa kembali email atau kata sandi."
+        }, status=401)
