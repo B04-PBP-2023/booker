@@ -6,7 +6,6 @@ from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import redirect
 from django.views.generic import CreateView
 from django.views.decorators.http import require_http_methods
-from django.views.decorators.csrf import csrf_exempt
 from authentication.models import User
 from authentication.forms import UserSignUpForm, AdminSignUpForm
 from django.http import HttpResponseRedirect, HttpResponse
@@ -78,7 +77,6 @@ def logout_user(request):
     return response
 
 
-@csrf_exempt
 def login_mobile(request):
     username = request.POST['username']
     password = request.POST['password']

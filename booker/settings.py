@@ -45,6 +45,8 @@ CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SAMESITE = 'None'
+CSRF_TRUSTED_ORIGINS = ['https://booker-b04-tk.pbp.cs.ui.ac.id/']
+
 
 # Application definition
 
@@ -64,7 +66,6 @@ INSTALLED_APPS = [
     'reviewbuku',
     'lamanadmin',
     'authentication',
-    'fontawesomefree',
     'rest_framework',
     'corsheaders'
 ]
