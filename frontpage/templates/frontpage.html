@@ -67,8 +67,13 @@
                   ${book.fields.rating}
                 </h5>
               </div>
-              <a href="{% url 'pinjambuku:show_pinjam_buku' %}?id=${book.pk}">
+              <a href="{% url 'reviewbuku:show_review_buku' %}?id=${book.pk}">
                 <button class="w-100 text-center">
+                  Review
+                </button>
+              </a>
+              <a href="{% url 'pinjambuku:show_pinjam_buku' %}?id=${book.pk}">
+                <button class="w-100 text-center mt-3">
                   Pinjam
                 </button>
               </a>

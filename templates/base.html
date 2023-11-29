@@ -8,7 +8,6 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" href="{% static 'style.css' %}">
-  <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -16,6 +15,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
     integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
     crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   {% block meta %}
 
   {% endblock meta %}
@@ -102,7 +103,226 @@
 </body>
 
 <style>
+  
+.card-title {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    /* number of lines to show */
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
 
+  .searchbar {
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 60px;
+    border-radius: 30px;
+    padding: 10px;
+  }
+
+  .search_input {
+    color: black;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color: black;
+    
+  }
+
+  .search_input {
+    width: 450px;
+    caret-color: black;
+  }
+
+  .search_icon {
+    background: white;
+    color: #e74c3c;
+  }
+
+  .search_icon {
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: black;
+    text-decoration: none;
+  }
+
+  .back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: none;
+  }
+
+  .checked {
+    color: rgba(255, 166, 0, 0.863);
+  }
+
+  .fa-dollar-sign {
+    color: green;
+  }
+
+  #book_card {
+    width: 17rem;
+    height: 26rem;
+  }
+
+  body {
+    background: #dde1e7
+  }
+
+  #page-container {
+    position: relative;
+    min-height: 100vh;
+  }
+
+  #content-wrap {
+    padding-bottom: 3rem;
+    /* Footer height */
+  }
+
+  #footer {
+    text-align: center;
+    justify-self: center;
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    width: 100%;
+    height: 3rem;
+    /* Footer height */
+  }
+
+  .frosted-glass-nav {
+    /* From https://css.glass */
+    background: rgba(100, 118, 149, 0.2);
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.1px);
+    -webkit-backdrop-filter: blur(5.1px);
+    border: 1px solid rgba(100, 118, 149, 0.3);
+  }
+
+  .frosted-glass-footer {
+    /* From https://css.glass */
+    background: rgba(100, 118, 149, 0.2);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.1px);
+    -webkit-backdrop-filter: blur(5.1px);
+    border: 1px solid rgba(100, 118, 149, 0.3);
+  }
+
+  .frosted-glass {
+    /* From https://css.glass */
+    background: rgba(100, 118, 149, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.1px);
+    -webkit-backdrop-filter: blur(5.1px);
+    border: 1px solid rgba(100, 118, 149, 0.3);
+  }
+
+  .sticky-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+  .sticky-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .content {
+    background: #dde1e7;
+    border-radius: 10px;
+    box-shadow: -3px -3px 7px #ffffff73,
+      2px 2px 5px rgba(94, 104, 121, 0.288);
+  }
+
+  .content .field {
+    height: auto;
+    display: flex;
+    position: relative;
+  }
+
+  .field input {
+    height: 3em;
+    width: 100%;
+    padding-left: 1.1em;
+    outline: none;
+    border: none;
+    color: black;
+    background: #dde1e7;
+    border-radius: 25px;
+    box-shadow: inset 2px 2px 5px #babecc,
+      inset -5px -5px 10px #ffffff73;
+  }
+
+  .field input:focus~label {
+    box-shadow: inset 2px 2px 5px #babecc,
+      inset -1px -1px 2px #ffffff73;
+  }
+
+  .field:nth-child(2) {
+    margin-top: 20px;
+  }
+
+  .field span {
+    position: absolute;
+    width: 3em;
+    line-height: 3em;
+    color: #595959;
+  }
+
+  .field label {
+    position: absolute;
+    top: 50%;
+    left: 45px;
+    pointer-events: none;
+    color: black;
+    transform: translateY(-50%);
+  }
+
+
+  .field input:focus~label {
+    opacity: 0;
+  }
+
+
+  button,
+  input[type=submit] {
+    width: 2.5em;
+    height: 2.5em;
+    color: #000;
+    font-size: 18px;
+    font-weight: 600;
+    background: #dde1e7;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 25px;
+    box-shadow: 2px 2px 5px #babecc,
+      -5px -5px 10px #ffffff73;
+  }
+
+  button:hover,
+  input[type=submit]:hover {
+    box-shadow: inset 2px 2px 5px #babecc,inset -5px -5px 10px #ffffff73;
+  }
+
+  span.content:hover {
+    box-shadow: inset 2px 2px 5px #babecc,
+      inset -5px -5px 10px #ffffff73;
+  }
 </style>
 
 </html>
