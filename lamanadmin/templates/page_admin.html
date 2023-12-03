@@ -39,7 +39,6 @@
     </table>
   </div>
 </div>
-<br />
 <div class="container h-100">
   <h1>Data Statistik Stok Peminjaman Buku</h1>
 </div>
@@ -80,11 +79,14 @@
   }
 
   async function getBooks() {
-    books = await fetch("{% url 'book:get_books' %}").then((res) => res.json());
-    await refreshTable(books);
-    await refreshCharts(books);
-  }
+    booksTable = await fetch("{% url 'book:get_books' %}").then((res) => res.json());
+    await refreshTable(booksTable);
+    booksCharts = await fetch("{% url 'bookshelf:get_bookshelf_items' %}" + `?borrow=${1}`).then((res) => res.json());
+    await refreshCharts(booksCharts);
+    }
 
+  getBooks()
+ 
   async function refreshTable(books) {
     let htmlString = `<tr class="table-dark">
             <th>No.</th>
@@ -108,8 +110,7 @@
 
     document.getElementById("stock_table").innerHTML = htmlString
   }
-
-  getBooks()
+ 
 
   async function refreshCharts(books) {
 
@@ -118,27 +119,29 @@
     var xValuesGenre = ["Non Fiction", "Fiction"]; var yValuesStockGenre = [0, 0]; var genreColors = ["Red", "Blue"];
 
     books.forEach((book) => {
-      const randomColorMath = Math.floor(Math.random() * 16777215).toString(16);
-      const randomColor = "#" + randomColorMath
-      var authorIndex = xValuesAuthor.findIndex(author => author === book.fields.author);
-      var yearIndex = xValuesYear.findIndex(year => year === book.fields.year);
+      const randomColorMath1 = Math.floor(Math.random() * 16777215).toString(16);
+      const randomColor1 = "#" + randomColorMath1
+      const randomColorMath2 = Math.floor(Math.random() * 16777215).toString(16);
+      const randomColor2 = "#" + randomColorMath2
+      var authorIndex = xValuesAuthor.findIndex(author => author === book.book.author);
+      var yearIndex = xValuesYear.findIndex(year => year === book.book.year);
 
       if (authorIndex === -1) {
-        xValuesAuthor.push(book.fields.author);
-        yValuesStockAuthor.push(book.fields.stock);
-        authorColors.push(randomColor);
+        xValuesAuthor.push(book.book.author);
+        yValuesStockAuthor.push(1);
+        authorColors.push(randomColor1);
       } else if (authorIndex !== -1) {
-        yValuesStockAuthor[authorIndex] += book.fields.stock;
+        yValuesStockAuthor[authorIndex] += 1;
       } if (yearIndex === -1) {
-        xValuesYear.push(book.fields.year);
-        yValuesStockYear.push(book.fields.year);
-        yearColors.push(randomColor);
+        xValuesYear.push(book.book.year);
+        yValuesStockYear.push(1);
+        yearColors.push(randomColor2);
       } else if (yearIndex !== -1) {
-        yValuesStockYear[yearIndex] += book.fields.stock;
-      } if (book.fields.genre == "Non Fiction") {
-        yValuesStockGenre[0] += book.fields.stock;
-      } else if (book.fields.genre == "Fiction") {
-        yValuesStockGenre[1] += book.fields.stock;
+        yValuesStockYear[yearIndex] += 1;
+      } if (book.book.genre == "Non Fiction") {
+        yValuesStockGenre[0] += 1;
+      } else if (book.book.genre == "Fiction") {
+        yValuesStockGenre[1] += 1;
       }
     });
 
@@ -155,7 +158,9 @@
         title: {
           display: true,
           text: "Berdasarkan Author"
-        }
+        },
+        maintainAspectRatio: false,
+        responsive: true
       }
     });
     new Chart("labelChartYear", {
@@ -171,7 +176,9 @@
         title: {
           display: true,
           text: "Berdasarkan Tahun"
-        }
+        },
+        maintainAspectRatio: false,
+        responsive: true
       }
     });
     new Chart("labelChartGenre", {
@@ -187,10 +194,11 @@
         title: {
           display: true,
           text: "Berdasarkan Genre"
-        }
+        },
+        maintainAspectRatio: false,
+        responsive: true
       }
     });
   }
-
 </script>
 {% endblock content %}
