@@ -13,7 +13,7 @@ from django.urls import reverse
 from django.http import HttpResponse
 from django.core import serializers
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
+# from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
@@ -79,7 +79,6 @@ def logout_user(request):
     return response
 
 
-@csrf_exempt
 def login_mobile(request):
     username = request.POST['username']
     password = request.POST['password']
@@ -106,7 +105,6 @@ def login_mobile(request):
         }, status=401)
 
 
-@csrf_exempt
 def logout_mobile(request):
     username = request.user.username
 
@@ -124,14 +122,12 @@ def logout_mobile(request):
         }, status=401)
 
 
-@csrf_exempt
 def check_is_anonymous(request):
     return JsonResponse({
         "anonymous": request.user.is_anonymous
     }, status=200)
 
 
-@csrf_exempt
 def get_user_data(request):
     if (not request.user.is_anonymous):
         return JsonResponse({
