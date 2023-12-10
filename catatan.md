@@ -3,10 +3,10 @@
 ## Activate virtual environment
 
 - Windows
-    `env\Scripts\activate.bat`
+    env\Scripts\activate.bat
 
 - Unix (Mac/Linux)
-    `source env/bin/activate`
+    source env/bin/activate
 
 ## CSS Framework
 
