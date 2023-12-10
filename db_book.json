@@ -1,0 +1,1602 @@
+[
+	{
+		"model": "book.book",
+		"pk": 1,
+		"fields": {
+			"name": "10-Day Green Smoothie Cleanse",
+			"author": "JJ Smith",
+			"rating": 4.7,
+			"reviews": 17350,
+			"price": 8,
+			"year": 2016,
+			"genre": "Non Fiction",
+			"stock": 17,
+			"points_to_exchange": 977,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 2,
+		"fields": {
+			"name": "11/22/63: A Novel",
+			"author": "Stephen King",
+			"rating": 4.6,
+			"reviews": 2052,
+			"price": 22,
+			"year": 2011,
+			"genre": "Fiction",
+			"stock": 23,
+			"points_to_exchange": 55,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 3,
+		"fields": {
+			"name": "12 Rules for Life: An Antidote to Chaos",
+			"author": "Jordan B. Peterson",
+			"rating": 4.7,
+			"reviews": 18979,
+			"price": 15,
+			"year": 2018,
+			"genre": "Non Fiction",
+			"stock": 82,
+			"points_to_exchange": 118,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 4,
+		"fields": {
+			"name": "1984 (Signet Classics)",
+			"author": "George Orwell",
+			"rating": 4.7,
+			"reviews": 21424,
+			"price": 6,
+			"year": 2017,
+			"genre": "Fiction",
+			"stock": 73,
+			"points_to_exchange": 859,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 5,
+		"fields": {
+			"name": "5,000 Awesome Facts (About Everything!) (National Geographic Kids)",
+			"author": "National Geographic Kids",
+			"rating": 4.8,
+			"reviews": 7665,
+			"price": 12,
+			"year": 2019,
+			"genre": "Non Fiction",
+			"stock": 29,
+			"points_to_exchange": 78,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 6,
+		"fields": {
+			"name": "A Dance with Dragons (A Song of Ice and Fire)",
+			"author": "George R. R. Martin",
+			"rating": 4.4,
+			"reviews": 12643,
+			"price": 11,
+			"year": 2011,
+			"genre": "Fiction",
+			"stock": 84,
+			"points_to_exchange": 896,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 7,
+		"fields": {
+			"name": "A Game of Thrones / A Clash of Kings / A Storm of Swords / A Feast of Crows / A Dance with Dragons",
+			"author": "George R. R. Martin",
+			"rating": 4.7,
+			"reviews": 19735,
+			"price": 30,
+			"year": 2014,
+			"genre": "Fiction",
+			"stock": 71,
+			"points_to_exchange": 864,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 8,
+		"fields": {
+			"name": "A Gentleman in Moscow: A Novel",
+			"author": "Amor Towles",
+			"rating": 4.7,
+			"reviews": 19699,
+			"price": 15,
+			"year": 2017,
+			"genre": "Fiction",
+			"stock": 73,
+			"points_to_exchange": 688,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 9,
+		"fields": {
+			"name": "A Higher Loyalty: Truth, Lies, and Leadership",
+			"author": "James Comey",
+			"rating": 4.7,
+			"reviews": 5983,
+			"price": 3,
+			"year": 2018,
+			"genre": "Non Fiction",
+			"stock": 79,
+			"points_to_exchange": 967,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 10,
+		"fields": {
+			"name": "A Man Called Ove: A Novel",
+			"author": "Fredrik Backman",
+			"rating": 4.6,
+			"reviews": 23848,
+			"price": 8,
+			"year": 2016,
+			"genre": "Fiction",
+			"stock": 59,
+			"points_to_exchange": 20,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 11,
+		"fields": {
+			"name": "A Man Called Ove: A Novel",
+			"author": "Fredrik Backman",
+			"rating": 4.6,
+			"reviews": 23848,
+			"price": 8,
+			"year": 2017,
+			"genre": "Fiction",
+			"stock": 81,
+			"points_to_exchange": 89,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 12,
+		"fields": {
+			"name": "A Patriot's History of the United States: From Columbus's Great Discovery to the War on Terror",
+			"author": "Larry Schweikart",
+			"rating": 4.6,
+			"reviews": 460,
+			"price": 2,
+			"year": 2010,
+			"genre": "Non Fiction",
+			"stock": 94,
+			"points_to_exchange": 787,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 13,
+		"fields": {
+			"name": "A Stolen Life: A Memoir",
+			"author": "Jaycee Dugard",
+			"rating": 4.6,
+			"reviews": 4149,
+			"price": 32,
+			"year": 2011,
+			"genre": "Non Fiction",
+			"stock": 57,
+			"points_to_exchange": 173,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 14,
+		"fields": {
+			"name": "A Wrinkle in Time (Time Quintet)",
+			"author": "Madeleine L'Engle",
+			"rating": 4.5,
+			"reviews": 5153,
+			"price": 5,
+			"year": 2018,
+			"genre": "Fiction",
+			"stock": 23,
+			"points_to_exchange": 990,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 15,
+		"fields": {
+			"name": "Act Like a Lady, Think Like a Man: What Men Really Think About Love, Relationships, Intimacy, and Commitment",
+			"author": "Steve Harvey",
+			"rating": 4.6,
+			"reviews": 5013,
+			"price": 17,
+			"year": 2009,
+			"genre": "Non Fiction",
+			"stock": 81,
+			"points_to_exchange": 749,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 16,
+		"fields": {
+			"name": "Adult Coloring Book Designs: Stress Relief Coloring Book: Garden Designs, Mandalas, Animals, and Paisley Patterns",
+			"author": "Adult Coloring Book Designs",
+			"rating": 4.5,
+			"reviews": 2313,
+			"price": 4,
+			"year": 2016,
+			"genre": "Non Fiction",
+			"stock": 5,
+			"points_to_exchange": 22,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 17,
+		"fields": {
+			"name": "Adult Coloring Book: Stress Relieving Animal Designs",
+			"author": "Blue Star Coloring",
+			"rating": 4.6,
+			"reviews": 2925,
+			"price": 6,
+			"year": 2015,
+			"genre": "Non Fiction",
+			"stock": 14,
+			"points_to_exchange": 546,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 18,
+		"fields": {
+			"name": "Adult Coloring Book: Stress Relieving Patterns",
+			"author": "Blue Star Coloring",
+			"rating": 4.4,
+			"reviews": 2951,
+			"price": 6,
+			"year": 2015,
+			"genre": "Non Fiction",
+			"stock": 6,
+			"points_to_exchange": 634,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 19,
+		"fields": {
+			"name": "Adult Coloring Books: A Coloring Book for Adults Featuring Mandalas and Henna Inspired Flowers, Animals, and Paisley…",
+			"author": "Coloring Books for Adults",
+			"rating": 4.5,
+			"reviews": 2426,
+			"price": 8,
+			"year": 2015,
+			"genre": "Non Fiction",
+			"stock": 21,
+			"points_to_exchange": 649,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 20,
+		"fields": {
+			"name": "Alexander Hamilton",
+			"author": "Ron Chernow",
+			"rating": 4.8,
+			"reviews": 9198,
+			"price": 13,
+			"year": 2016,
+			"genre": "Non Fiction",
+			"stock": 12,
+			"points_to_exchange": 936,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 21,
+		"fields": {
+			"name": "All the Light We Cannot See",
+			"author": "Anthony Doerr",
+			"rating": 4.6,
+			"reviews": 36348,
+			"price": 14,
+			"year": 2014,
+			"genre": "Fiction",
+			"stock": 57,
+			"points_to_exchange": 154,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 22,
+		"fields": {
+			"name": "All the Light We Cannot See",
+			"author": "Anthony Doerr",
+			"rating": 4.6,
+			"reviews": 36348,
+			"price": 14,
+			"year": 2015,
+			"genre": "Fiction",
+			"stock": 98,
+			"points_to_exchange": 609,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 23,
+		"fields": {
+			"name": "Allegiant",
+			"author": "Veronica Roth",
+			"rating": 3.9,
+			"reviews": 6310,
+			"price": 13,
+			"year": 2013,
+			"genre": "Fiction",
+			"stock": 72,
+			"points_to_exchange": 521,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 24,
+		"fields": {
+			"name": "American Sniper: The Autobiography of the Most Lethal Sniper in U.S. Military History",
+			"author": "Chris Kyle",
+			"rating": 4.6,
+			"reviews": 15921,
+			"price": 9,
+			"year": 2015,
+			"genre": "Non Fiction",
+			"stock": 33,
+			"points_to_exchange": 599,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 25,
+		"fields": {
+			"name": "And the Mountains Echoed",
+			"author": "Khaled Hosseini",
+			"rating": 4.3,
+			"reviews": 12159,
+			"price": 13,
+			"year": 2013,
+			"genre": "Fiction",
+			"stock": 82,
+			"points_to_exchange": 274,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 26,
+		"fields": {
+			"name": "Arguing with Idiots: How to Stop Small Minds and Big Government",
+			"author": "Glenn Beck",
+			"rating": 4.6,
+			"reviews": 798,
+			"price": 5,
+			"year": 2009,
+			"genre": "Non Fiction",
+			"stock": 8,
+			"points_to_exchange": 688,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 27,
+		"fields": {
+			"name": "Astrophysics for People in a Hurry",
+			"author": "Neil deGrasse Tyson",
+			"rating": 4.7,
+			"reviews": 9374,
+			"price": 9,
+			"year": 2017,
+			"genre": "Non Fiction",
+			"stock": 32,
+			"points_to_exchange": 555,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 28,
+		"fields": {
+			"name": "Autobiography of Mark Twain, Vol. 1",
+			"author": "Mark Twain",
+			"rating": 4.2,
+			"reviews": 491,
+			"price": 14,
+			"year": 2010,
+			"genre": "Non Fiction",
+			"stock": 69,
+			"points_to_exchange": 41,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 29,
+		"fields": {
+			"name": "Baby Touch and Feel: Animals",
+			"author": "DK",
+			"rating": 4.6,
+			"reviews": 5360,
+			"price": 5,
+			"year": 2015,
+			"genre": "Non Fiction",
+			"stock": 10,
+			"points_to_exchange": 938,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 30,
+		"fields": {
+			"name": "Balance (Angie's Extreme Stress Menders)",
+			"author": "Angie Grace",
+			"rating": 4.6,
+			"reviews": 1909,
+			"price": 11,
+			"year": 2015,
+			"genre": "Non Fiction",
+			"stock": 17,
+			"points_to_exchange": 47,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 31,
+		"fields": {
+			"name": "Barefoot Contessa Foolproof: Recipes You Can Trust: A Cookbook",
+			"author": "Ina Garten",
+			"rating": 4.8,
+			"reviews": 1296,
+			"price": 24,
+			"year": 2012,
+			"genre": "Non Fiction",
+			"stock": 40,
+			"points_to_exchange": 746,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 32,
+		"fields": {
+			"name": "Barefoot Contessa, How Easy Is That?: Fabulous Recipes & Easy Tips",
+			"author": "Ina Garten",
+			"rating": 4.7,
+			"reviews": 615,
+			"price": 21,
+			"year": 2010,
+			"genre": "Non Fiction",
+			"stock": 38,
+			"points_to_exchange": 79,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 33,
+		"fields": {
+			"name": "Becoming",
+			"author": "Michelle Obama",
+			"rating": 4.8,
+			"reviews": 61133,
+			"price": 11,
+			"year": 2018,
+			"genre": "Non Fiction",
+			"stock": 21,
+			"points_to_exchange": 817,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 34,
+		"fields": {
+			"name": "Becoming",
+			"author": "Michelle Obama",
+			"rating": 4.8,
+			"reviews": 61133,
+			"price": 11,
+			"year": 2019,
+			"genre": "Non Fiction",
+			"stock": 66,
+			"points_to_exchange": 841,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 35,
+		"fields": {
+			"name": "Being Mortal: Medicine and What Matters in the End",
+			"author": "Atul Gawande",
+			"rating": 4.8,
+			"reviews": 11113,
+			"price": 15,
+			"year": 2015,
+			"genre": "Non Fiction",
+			"stock": 18,
+			"points_to_exchange": 893,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 36,
+		"fields": {
+			"name": "Between the World and Me",
+			"author": "Ta-Nehisi Coates",
+			"rating": 4.7,
+			"reviews": 10070,
+			"price": 13,
+			"year": 2015,
+			"genre": "Non Fiction",
+			"stock": 88,
+			"points_to_exchange": 904,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 37,
+		"fields": {
+			"name": "Between the World and Me",
+			"author": "Ta-Nehisi Coates",
+			"rating": 4.7,
+			"reviews": 10070,
+			"price": 13,
+			"year": 2016,
+			"genre": "Non Fiction",
+			"stock": 49,
+			"points_to_exchange": 525,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 38,
+		"fields": {
+			"name": "Born to Run",
+			"author": "Bruce Springsteen",
+			"rating": 4.7,
+			"reviews": 3729,
+			"price": 18,
+			"year": 2016,
+			"genre": "Non Fiction",
+			"stock": 72,
+			"points_to_exchange": 373,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 39,
+		"fields": {
+			"name": "Breaking Dawn (The Twilight Saga, Book 4)",
+			"author": "Stephenie Meyer",
+			"rating": 4.6,
+			"reviews": 9769,
+			"price": 13,
+			"year": 2009,
+			"genre": "Fiction",
+			"stock": 58,
+			"points_to_exchange": 893,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 40,
+		"fields": {
+			"name": "Broke: The Plan to Restore Our Trust, Truth and Treasure",
+			"author": "Glenn Beck",
+			"rating": 4.5,
+			"reviews": 471,
+			"price": 8,
+			"year": 2010,
+			"genre": "Non Fiction",
+			"stock": 54,
+			"points_to_exchange": 321,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 41,
+		"fields": {
+			"name": "Brown Bear, Brown Bear, What Do You See?",
+			"author": "Bill Martin Jr.",
+			"rating": 4.9,
+			"reviews": 14344,
+			"price": 5,
+			"year": 2017,
+			"genre": "Fiction",
+			"stock": 52,
+			"points_to_exchange": 295,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 42,
+		"fields": {
+			"name": "Brown Bear, Brown Bear, What Do You See?",
+			"author": "Bill Martin Jr.",
+			"rating": 4.9,
+			"reviews": 14344,
+			"price": 5,
+			"year": 2019,
+			"genre": "Fiction",
+			"stock": 82,
+			"points_to_exchange": 75,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 43,
+		"fields": {
+			"name": "Cabin Fever (Diary of a Wimpy Kid, Book 6)",
+			"author": "Jeff Kinney",
+			"rating": 4.8,
+			"reviews": 4505,
+			"price": 0,
+			"year": 2011,
+			"genre": "Fiction",
+			"stock": 74,
+			"points_to_exchange": 642,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 44,
+		"fields": {
+			"name": "Calm the F*ck Down: An Irreverent Adult Coloring Book (Irreverent Book Series)",
+			"author": "Sasha O'Hara",
+			"rating": 4.6,
+			"reviews": 10369,
+			"price": 4,
+			"year": 2016,
+			"genre": "Non Fiction",
+			"stock": 25,
+			"points_to_exchange": 395,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 45,
+		"fields": {
+			"name": "Can't Hurt Me: Master Your Mind and Defy the Odds",
+			"author": "David Goggins",
+			"rating": 4.8,
+			"reviews": 16244,
+			"price": 18,
+			"year": 2019,
+			"genre": "Non Fiction",
+			"stock": 0,
+			"points_to_exchange": 32,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 46,
+		"fields": {
+			"name": "Capital in the Twenty First Century",
+			"author": "Thomas Piketty",
+			"rating": 4.5,
+			"reviews": 2884,
+			"price": 28,
+			"year": 2014,
+			"genre": "Non Fiction",
+			"stock": 51,
+			"points_to_exchange": 998,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 47,
+		"fields": {
+			"name": "Catching Fire (The Hunger Games)",
+			"author": "Suzanne Collins",
+			"rating": 4.7,
+			"reviews": 22614,
+			"price": 11,
+			"year": 2010,
+			"genre": "Fiction",
+			"stock": 24,
+			"points_to_exchange": 107,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 48,
+		"fields": {
+			"name": "Catching Fire (The Hunger Games)",
+			"author": "Suzanne Collins",
+			"rating": 4.7,
+			"reviews": 22614,
+			"price": 11,
+			"year": 2011,
+			"genre": "Fiction",
+			"stock": 26,
+			"points_to_exchange": 247,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 49,
+		"fields": {
+			"name": "Catching Fire (The Hunger Games)",
+			"author": "Suzanne Collins",
+			"rating": 4.7,
+			"reviews": 22614,
+			"price": 11,
+			"year": 2012,
+			"genre": "Fiction",
+			"stock": 74,
+			"points_to_exchange": 126,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 50,
+		"fields": {
+			"name": "Cravings: Recipes for All the Food You Want to Eat: A Cookbook",
+			"author": "Chrissy Teigen",
+			"rating": 4.7,
+			"reviews": 4761,
+			"price": 16,
+			"year": 2016,
+			"genre": "Non Fiction",
+			"stock": 85,
+			"points_to_exchange": 174,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 51,
+		"fields": {
+			"name": "Crazy Love: Overwhelmed by a Relentless God",
+			"author": "Francis Chan",
+			"rating": 4.7,
+			"reviews": 1542,
+			"price": 14,
+			"year": 2009,
+			"genre": "Non Fiction",
+			"stock": 13,
+			"points_to_exchange": 681,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 52,
+		"fields": {
+			"name": "Crazy Love: Overwhelmed by a Relentless God",
+			"author": "Francis Chan",
+			"rating": 4.7,
+			"reviews": 1542,
+			"price": 14,
+			"year": 2010,
+			"genre": "Non Fiction",
+			"stock": 52,
+			"points_to_exchange": 831,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 53,
+		"fields": {
+			"name": "Crazy Love: Overwhelmed by a Relentless God",
+			"author": "Francis Chan",
+			"rating": 4.7,
+			"reviews": 1542,
+			"price": 14,
+			"year": 2011,
+			"genre": "Non Fiction",
+			"stock": 99,
+			"points_to_exchange": 352,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 54,
+		"fields": {
+			"name": "Crazy Rich Asians (Crazy Rich Asians Trilogy)",
+			"author": "Kevin Kwan",
+			"rating": 4.3,
+			"reviews": 6143,
+			"price": 8,
+			"year": 2018,
+			"genre": "Fiction",
+			"stock": 42,
+			"points_to_exchange": 927,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 55,
+		"fields": {
+			"name": "Creative Haven Creative Cats Coloring Book (Adult Coloring)",
+			"author": "Marjorie Sarnat",
+			"rating": 4.8,
+			"reviews": 4022,
+			"price": 4,
+			"year": 2015,
+			"genre": "Non Fiction",
+			"stock": 3,
+			"points_to_exchange": 501,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 56,
+		"fields": {
+			"name": "Creative Haven Owls Coloring Book (Adult Coloring)",
+			"author": "Marjorie Sarnat",
+			"rating": 4.8,
+			"reviews": 3871,
+			"price": 5,
+			"year": 2015,
+			"genre": "Non Fiction",
+			"stock": 80,
+			"points_to_exchange": 872,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 57,
+		"fields": {
+			"name": "Cutting for Stone",
+			"author": "Abraham Verghese",
+			"rating": 4.6,
+			"reviews": 4866,
+			"price": 11,
+			"year": 2010,
+			"genre": "Fiction",
+			"stock": 77,
+			"points_to_exchange": 151,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 58,
+		"fields": {
+			"name": "Cutting for Stone",
+			"author": "Abraham Verghese",
+			"rating": 4.6,
+			"reviews": 4866,
+			"price": 11,
+			"year": 2011,
+			"genre": "Fiction",
+			"stock": 13,
+			"points_to_exchange": 95,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 59,
+		"fields": {
+			"name": "Daring Greatly: How the Courage to Be Vulnerable Transforms the Way We Live, Love, Parent, and Lead",
+			"author": "Brené Brown",
+			"rating": 4.8,
+			"reviews": 1329,
+			"price": 10,
+			"year": 2013,
+			"genre": "Non Fiction",
+			"stock": 58,
+			"points_to_exchange": 128,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 60,
+		"fields": {
+			"name": "David and Goliath: Underdogs, Misfits, and the Art of Battling Giants",
+			"author": "Malcolm Gladwell",
+			"rating": 4.4,
+			"reviews": 4642,
+			"price": 13,
+			"year": 2013,
+			"genre": "Non Fiction",
+			"stock": 35,
+			"points_to_exchange": 96,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 61,
+		"fields": {
+			"name": "Dead And Gone: A Sookie Stackhouse Novel (Sookie Stackhouse/True Blood)",
+			"author": "Charlaine Harris",
+			"rating": 4.6,
+			"reviews": 1541,
+			"price": 4,
+			"year": 2009,
+			"genre": "Fiction",
+			"stock": 19,
+			"points_to_exchange": 568,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 62,
+		"fields": {
+			"name": "Dead in the Family (Sookie Stackhouse/True Blood, Book 10)",
+			"author": "Charlaine Harris",
+			"rating": 4.3,
+			"reviews": 1924,
+			"price": 8,
+			"year": 2010,
+			"genre": "Fiction",
+			"stock": 81,
+			"points_to_exchange": 196,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 63,
+		"fields": {
+			"name": "Dead Reckoning (Sookie Stackhouse/True Blood, Book 11)",
+			"author": "Charlaine Harris",
+			"rating": 4.2,
+			"reviews": 2094,
+			"price": 4,
+			"year": 2011,
+			"genre": "Fiction",
+			"stock": 20,
+			"points_to_exchange": 654,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 64,
+		"fields": {
+			"name": "Dear Zoo: A Lift-the-Flap Book",
+			"author": "Rod Campbell",
+			"rating": 4.8,
+			"reviews": 10922,
+			"price": 5,
+			"year": 2015,
+			"genre": "Fiction",
+			"stock": 7,
+			"points_to_exchange": 524,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 65,
+		"fields": {
+			"name": "Dear Zoo: A Lift-the-Flap Book",
+			"author": "Rod Campbell",
+			"rating": 4.8,
+			"reviews": 10922,
+			"price": 5,
+			"year": 2016,
+			"genre": "Fiction",
+			"stock": 16,
+			"points_to_exchange": 598,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 66,
+		"fields": {
+			"name": "Dear Zoo: A Lift-the-Flap Book",
+			"author": "Rod Campbell",
+			"rating": 4.8,
+			"reviews": 10922,
+			"price": 5,
+			"year": 2017,
+			"genre": "Fiction",
+			"stock": 1,
+			"points_to_exchange": 58,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 67,
+		"fields": {
+			"name": "Dear Zoo: A Lift-the-Flap Book",
+			"author": "Rod Campbell",
+			"rating": 4.8,
+			"reviews": 10922,
+			"price": 5,
+			"year": 2018,
+			"genre": "Fiction",
+			"stock": 44,
+			"points_to_exchange": 801,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 68,
+		"fields": {
+			"name": "Decision Points",
+			"author": "George W. Bush",
+			"rating": 4.6,
+			"reviews": 2137,
+			"price": 17,
+			"year": 2010,
+			"genre": "Non Fiction",
+			"stock": 72,
+			"points_to_exchange": 290,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 69,
+		"fields": {
+			"name": "Delivering Happiness: A Path to Profits, Passion, and Purpose",
+			"author": "Tony Hsieh",
+			"rating": 4.6,
+			"reviews": 1651,
+			"price": 15,
+			"year": 2010,
+			"genre": "Non Fiction",
+			"stock": 87,
+			"points_to_exchange": 287,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 70,
+		"fields": {
+			"name": "Diagnostic and Statistical Manual of Mental Disorders, 5th Edition: DSM-5",
+			"author": "American Psychiatric Association",
+			"rating": 4.5,
+			"reviews": 6679,
+			"price": 105,
+			"year": 2013,
+			"genre": "Non Fiction",
+			"stock": 9,
+			"points_to_exchange": 372,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 71,
+		"fields": {
+			"name": "Diagnostic and Statistical Manual of Mental Disorders, 5th Edition: DSM-5",
+			"author": "American Psychiatric Association",
+			"rating": 4.5,
+			"reviews": 6679,
+			"price": 105,
+			"year": 2014,
+			"genre": "Non Fiction",
+			"stock": 52,
+			"points_to_exchange": 202,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 72,
+		"fields": {
+			"name": "Diary of a Wimpy Kid: Hard Luck, Book 8",
+			"author": "Jeff Kinney",
+			"rating": 4.8,
+			"reviews": 6812,
+			"price": 0,
+			"year": 2013,
+			"genre": "Fiction",
+			"stock": 78,
+			"points_to_exchange": 259,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 73,
+		"fields": {
+			"name": "Diary of a Wimpy Kid: The Last Straw (Book 3)",
+			"author": "Jeff Kinney",
+			"rating": 4.8,
+			"reviews": 3837,
+			"price": 15,
+			"year": 2009,
+			"genre": "Fiction",
+			"stock": 62,
+			"points_to_exchange": 78,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 74,
+		"fields": {
+			"name": "Diary of a Wimpy Kid: The Long Haul",
+			"author": "Jeff Kinney",
+			"rating": 4.8,
+			"reviews": 6540,
+			"price": 22,
+			"year": 2014,
+			"genre": "Fiction",
+			"stock": 98,
+			"points_to_exchange": 880,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 75,
+		"fields": {
+			"name": "Difficult Riddles For Smart Kids: 300 Difficult Riddles And Brain Teasers Families Will Love (Books for Smart Kids)",
+			"author": "M Prefontaine",
+			"rating": 4.6,
+			"reviews": 7955,
+			"price": 5,
+			"year": 2019,
+			"genre": "Non Fiction",
+			"stock": 48,
+			"points_to_exchange": 854,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 76,
+		"fields": {
+			"name": "Divergent",
+			"author": "Veronica Roth",
+			"rating": 4.6,
+			"reviews": 27098,
+			"price": 15,
+			"year": 2013,
+			"genre": "Fiction",
+			"stock": 26,
+			"points_to_exchange": 805,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 77,
+		"fields": {
+			"name": "Divergent",
+			"author": "Veronica Roth",
+			"rating": 4.6,
+			"reviews": 27098,
+			"price": 15,
+			"year": 2014,
+			"genre": "Fiction",
+			"stock": 96,
+			"points_to_exchange": 626,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 78,
+		"fields": {
+			"name": "Divergent / Insurgent",
+			"author": "Veronica Roth",
+			"rating": 4.5,
+			"reviews": 17684,
+			"price": 6,
+			"year": 2014,
+			"genre": "Fiction",
+			"stock": 39,
+			"points_to_exchange": 883,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 79,
+		"fields": {
+			"name": "Divine Soul Mind Body Healing and Transmission System: The Divine Way to Heal You, Humanity, Mother Earth, and All…",
+			"author": "Zhi Gang Sha",
+			"rating": 4.6,
+			"reviews": 37,
+			"price": 6,
+			"year": 2009,
+			"genre": "Non Fiction",
+			"stock": 45,
+			"points_to_exchange": 299,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 80,
+		"fields": {
+			"name": "Doctor Sleep: A Novel",
+			"author": "Stephen King",
+			"rating": 4.7,
+			"reviews": 15845,
+			"price": 13,
+			"year": 2013,
+			"genre": "Fiction",
+			"stock": 62,
+			"points_to_exchange": 806,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 81,
+		"fields": {
+			"name": "Dog Days (Diary of a Wimpy Kid, Book 4) (Volume 4)",
+			"author": "Jeff Kinney",
+			"rating": 4.8,
+			"reviews": 3181,
+			"price": 12,
+			"year": 2009,
+			"genre": "Fiction",
+			"stock": 40,
+			"points_to_exchange": 531,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 82,
+		"fields": {
+			"name": "Dog Man and Cat Kid: From the Creator of Captain Underpants (Dog Man #4)",
+			"author": "Dav Pilkey",
+			"rating": 4.9,
+			"reviews": 5062,
+			"price": 6,
+			"year": 2018,
+			"genre": "Fiction",
+			"stock": 21,
+			"points_to_exchange": 968,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 83,
+		"fields": {
+			"name": "Dog Man: A Tale of Two Kitties: From the Creator of Captain Underpants (Dog Man #3)",
+			"author": "Dav Pilkey",
+			"rating": 4.9,
+			"reviews": 4786,
+			"price": 8,
+			"year": 2017,
+			"genre": "Fiction",
+			"stock": 62,
+			"points_to_exchange": 673,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 84,
+		"fields": {
+			"name": "Dog Man: Brawl of the Wild: From the Creator of Captain Underpants (Dog Man #6)",
+			"author": "Dav Pilkey",
+			"rating": 4.9,
+			"reviews": 7235,
+			"price": 4,
+			"year": 2018,
+			"genre": "Fiction",
+			"stock": 53,
+			"points_to_exchange": 299,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 85,
+		"fields": {
+			"name": "Dog Man: Brawl of the Wild: From the Creator of Captain Underpants (Dog Man #6)",
+			"author": "Dav Pilkey",
+			"rating": 4.9,
+			"reviews": 7235,
+			"price": 4,
+			"year": 2019,
+			"genre": "Fiction",
+			"stock": 98,
+			"points_to_exchange": 530,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 86,
+		"fields": {
+			"name": "Dog Man: Fetch-22: From the Creator of Captain Underpants (Dog Man #8)",
+			"author": "Dav Pilkey",
+			"rating": 4.9,
+			"reviews": 12619,
+			"price": 8,
+			"year": 2019,
+			"genre": "Fiction",
+			"stock": 24,
+			"points_to_exchange": 366,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 87,
+		"fields": {
+			"name": "Dog Man: For Whom the Ball Rolls: From the Creator of Captain Underpants (Dog Man #7)",
+			"author": "Dav Pilkey",
+			"rating": 4.9,
+			"reviews": 9089,
+			"price": 8,
+			"year": 2019,
+			"genre": "Fiction",
+			"stock": 91,
+			"points_to_exchange": 883,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 88,
+		"fields": {
+			"name": "Dog Man: Lord of the Fleas: From the Creator of Captain Underpants (Dog Man #5)",
+			"author": "Dav Pilkey",
+			"rating": 4.9,
+			"reviews": 5470,
+			"price": 6,
+			"year": 2018,
+			"genre": "Fiction",
+			"stock": 80,
+			"points_to_exchange": 486,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 89,
+		"fields": {
+			"name": "Double Down (Diary of a Wimpy Kid #11)",
+			"author": "Jeff Kinney",
+			"rating": 4.8,
+			"reviews": 5118,
+			"price": 20,
+			"year": 2016,
+			"genre": "Fiction",
+			"stock": 55,
+			"points_to_exchange": 430,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 90,
+		"fields": {
+			"name": "Dover Creative Haven Art Nouveau Animal Designs Coloring Book (Creative Haven Coloring Books)",
+			"author": "Marty Noble",
+			"rating": 4.6,
+			"reviews": 2134,
+			"price": 5,
+			"year": 2015,
+			"genre": "Non Fiction",
+			"stock": 19,
+			"points_to_exchange": 955,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 91,
+		"fields": {
+			"name": "Drive: The Surprising Truth About What Motivates Us",
+			"author": "Daniel H. Pink",
+			"rating": 4.5,
+			"reviews": 2525,
+			"price": 16,
+			"year": 2010,
+			"genre": "Non Fiction",
+			"stock": 52,
+			"points_to_exchange": 349,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 92,
+		"fields": {
+			"name": "Eat This Not That! Supermarket Survival Guide: The No-Diet Weight Loss Solution",
+			"author": "David Zinczenko",
+			"rating": 4.5,
+			"reviews": 720,
+			"price": 1,
+			"year": 2009,
+			"genre": "Non Fiction",
+			"stock": 66,
+			"points_to_exchange": 666,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 93,
+		"fields": {
+			"name": "Eat This, Not That! Thousands of Simple Food Swaps that Can Save You 10, 20, 30 Pounds--or More!",
+			"author": "David Zinczenko",
+			"rating": 4.3,
+			"reviews": 956,
+			"price": 14,
+			"year": 2009,
+			"genre": "Non Fiction",
+			"stock": 14,
+			"points_to_exchange": 584,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 94,
+		"fields": {
+			"name": "Eat to Live: The Amazing Nutrient-Rich Program for Fast and Sustained Weight Loss, Revised Edition",
+			"author": "Joel Fuhrman MD",
+			"rating": 4.5,
+			"reviews": 6346,
+			"price": 9,
+			"year": 2011,
+			"genre": "Non Fiction",
+			"stock": 31,
+			"points_to_exchange": 829,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 95,
+		"fields": {
+			"name": "Eat to Live: The Amazing Nutrient-Rich Program for Fast and Sustained Weight Loss, Revised Edition",
+			"author": "Joel Fuhrman MD",
+			"rating": 4.5,
+			"reviews": 6346,
+			"price": 9,
+			"year": 2012,
+			"genre": "Non Fiction",
+			"stock": 42,
+			"points_to_exchange": 339,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 96,
+		"fields": {
+			"name": "Eclipse (Twilight Sagas)",
+			"author": "Stephenie Meyer",
+			"rating": 4.7,
+			"reviews": 5505,
+			"price": 7,
+			"year": 2009,
+			"genre": "Fiction",
+			"stock": 25,
+			"points_to_exchange": 809,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 97,
+		"fields": {
+			"name": "Eclipse (Twilight)",
+			"author": "Stephenie Meyer",
+			"rating": 4.7,
+			"reviews": 5505,
+			"price": 18,
+			"year": 2009,
+			"genre": "Fiction",
+			"stock": 36,
+			"points_to_exchange": 964,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 98,
+		"fields": {
+			"name": "Educated: A Memoir",
+			"author": "Tara Westover",
+			"rating": 4.7,
+			"reviews": 28729,
+			"price": 15,
+			"year": 2018,
+			"genre": "Non Fiction",
+			"stock": 69,
+			"points_to_exchange": 88,
+			"for_sale": false
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 99,
+		"fields": {
+			"name": "Educated: A Memoir",
+			"author": "Tara Westover",
+			"rating": 4.7,
+			"reviews": 28729,
+			"price": 15,
+			"year": 2019,
+			"genre": "Non Fiction",
+			"stock": 28,
+			"points_to_exchange": 487,
+			"for_sale": true
+		}
+	},
+	{
+		"model": "book.book",
+		"pk": 100,
+		"fields": {
+			"name": "Enchanted Forest: An Inky Quest and Coloring book (Activity Books, Mindfulness and Meditation, Illustrated Floral Prints…",
+			"author": "Johanna Basford",
+			"rating": 4.7,
+			"reviews": 5413,
+			"price": 9,
+			"year": 2015,
+			"genre": "Non Fiction",
+			"stock": 17,
+			"points_to_exchange": 288,
+			"for_sale": false
+		}
+	}
+]

@@ -36,7 +36,8 @@ def pengembalian(request):
     borrowed_book = BorrowedBook.objects.get(book=book)
     try:
         borrowed_book.delete()
-        user.points += book.points_to_exchange
+        user.points += 10
+        user.save()
     except:
         return HttpResponseBadRequest()
     return HttpResponseRedirect(reverse('bookshelf:show_bookshelf'))

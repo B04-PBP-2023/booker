@@ -18,6 +18,10 @@ def get_bought(request):
 
 def get_books(request):
     data = Book.objects.all()
+    for b in data:
+        b.points_to_exchange = 100
+        b.for_sale = True
+        b.save()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 
