@@ -41,11 +41,12 @@ ALLOWED_HOSTS = ["*"]
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = not True
+SESSION_COOKIE_SECURE = not True
 CSRF_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SAMESITE = 'None'
-CSRF_TRUSTED_ORIGINS = ['https://booker-b04-tk.pbp.cs.ui.ac.id/']
+# CSRF_TRUSTED_ORIGINS = [
+#     'https://booker-b04-tk.pbp.cs.ui.ac.id/']
 
 
 # Application definition
@@ -67,7 +68,8 @@ INSTALLED_APPS = [
     'lamanadmin',
     'authentication',
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
+    'fontawesomefree',
 ]
 
 MIDDLEWARE = [

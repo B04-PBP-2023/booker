@@ -13,6 +13,7 @@ from django.urls import reverse
 from django.http import HttpResponse
 from django.core import serializers
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
@@ -50,6 +51,7 @@ class UserSignUp(CreateView):
 
 @require_http_methods(["GET", "POST"])
 def login_user(request):
+
     if (request.method == "POST"):
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -77,6 +79,7 @@ def logout_user(request):
     return response
 
 
+@csrf_exempt
 def login_mobile(request):
     username = request.POST['username']
     password = request.POST['password']
@@ -100,4 +103,42 @@ def login_mobile(request):
         return JsonResponse({
             "status": False,
             "message": "Login gagal, periksa kembali email atau kata sandi."
+        }, status=401)
+
+
+@csrf_exempt
+def logout_mobile(request):
+    username = request.user.username
+
+    try:
+        logout(request)
+        return JsonResponse({
+            "username": username,
+            "status": True,
+            "message": "Logout berhasil!"
+        }, status=200)
+    except:
+        return JsonResponse({
+            "status": False,
+            "message": "Logout gagal."
+        }, status=401)
+
+
+@csrf_exempt
+def check_is_anonymous(request):
+    return JsonResponse({
+        "anonymous": request.user.is_anonymous
+    }, status=200)
+
+
+@csrf_exempt
+def get_user_data(request):
+    if (not request.user.is_anonymous):
+        return JsonResponse({
+            "username": request.user.username,
+            "points": request.user.points,
+        }, status=200)
+    else:
+        return JsonResponse({
+            "message": "Belum login."
         }, status=401)
