@@ -35,9 +35,17 @@ SECRET_KEY = 'django-insecure-!qt4*8310el_9i-!o7(y&$+u^ty!r)15%6z!9)l!jukghz(mj=
 PRODUCTION = env.bool('PRODUCTION', False)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'None'
+CSRF_TRUSTED_ORIGINS = ['https://booker-b04-tk.pbp.cs.ui.ac.id/']
 
 
 # Application definition
@@ -58,8 +66,8 @@ INSTALLED_APPS = [
     'reviewbuku',
     'lamanadmin',
     'authentication',
-    'fontawesomefree',
     'rest_framework',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -71,6 +79,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'booker.urls'

@@ -1,11 +1,19 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.core import serializers
-from book.models import Book
+from book.models import Book, BorrowedBook, BoughtBook
 
 # Create your views here.
 
 
+def get_borrowed(request):
+    data = BorrowedBook.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+
+def get_bought(request):
+    data = BoughtBook.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 
 def get_books(request):
