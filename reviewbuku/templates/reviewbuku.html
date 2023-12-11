@@ -1,50 +1,261 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block content %}
-<div class="d-flex flex-column justify-content-center">
-  <h3 class="mx-auto center" style="margin-top: 4.5rem;">Review</h3>
-  <p class="mx-auto center">Setelah mengirimkan review, kamu akan mendapat <b>10 poin</b></p>
-  <div id="book_card" class="content book_card col-md-5 mt-3 mx-auto position-relative" style="padding: 1.1rem 1.5rem;">
-    <div class="card-body h-100 d-flex flex-column">
-      <div>
-        <h5 class="card-title">{{book.name}}</h5>
-        <h6 class="card-subtitle text-light-emphasis mt-3">Penulis: {{book.author}}</h6>
-        <h6 class="card-subtitle text-light-emphasis mt-2">Tahun: {{book.year}}</h6>
-        <h6 class="card-subtitle text-light-emphasis mt-2">Genre: {{book.genre}}</h6>
+<style>
+  body {
+      display: grid;
+      height: 100%;
+  }
+  input {
+    display: none;
+  }
+  .container {
+    width: 100%;
+  }
+  #star-rating label{
+      font-size: 25px;
+      transition: all 1 ease;
+      float: right;
+  }
+  input:not(:checked) ~ label:hover,
+  input:not(:checked) ~ label:hover ~ label {
+      color: rgba(255, 166, 0, 0.863);
+  }
+  input:checked ~ label {
+    color: rgba(255, 166, 0, 0.863);
+  }
+  table {
+    margin-bottom: 10px;
+  }
+  td {
+    padding: 5px;
+  }
+  .baris-review {
+    font-size: 1em;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+  }
+  #data-buku {
+    font-size: 1em;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+  }
+  #nama-review {
+    padding-top: 15px;
+    padding-left: 15px;
+    margin-bottom: 5px;
+  }
+  #rating-review {
+    color: #faae20;
+    font-size: 20px;
+    margin-bottom: 1px;
+    padding-left: 15px;
+    display: inline-block;
+  }
+  #rating-off-review {
+    display: inline-block;
+    font-size: 20px;
+    margin-bottom: 1px;
+    color: #f1f3f4;
+  }
+  #text-review {
+    padding-left: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 0;
+  }
+  #tombol-ulasan {
+    margin: 10px;
+    width: fit-content;
+  }
+  .card-title {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+  .checked {
+    color: rgba(255, 166, 0, 0.863);
+  }
+  .unchecked {
+    color: grey;
+  }
+</style>
+
+<div class="container">
+  <div class="row" style="margin-top: 70px;">
+    <!-- Data Buku -->
+    <div class="col-md-3" id="data-buku" style="text-align: left; height: 80%; margin-top: 8px;">
+      <div class="databuku">
+        <div class="card-body h-100 d-flex flex-column" style="width: 100%;">
+          <div style="margin: 10px;">
+            <h5 class="card-title" style="margin-left: 10px;">{{ book.name }}</h5>
+            <h6 class="card-subtitle text-light-emphasis mt-3" style="margin-left: 10px;">Penulis: {{ book.author }}</h6>
+            <h6 class="card-subtitle text-light-emphasis mt-2" style="margin-left: 10px;">Tahun: {{ book.year }}</h6>
+            <h6 class="card-subtitle text-light-emphasis mt-2" style="margin-left: 10px;">Genre: {{ book.genre }}</h6>    
+          </div>
+          <div id="menu-ulasan" class="mt-auto" style="margin: 10px;">
+            <h6 class="card-subtitle text-light-emphasis mt-2" style="margin-left: 10px;">Pinjam atau beli buku ini terlebih dahulu untuk me-review</h6>    
+          </div>
+        </div>
       </div>
-      <div class="mt-auto">
-        <p class="m-0 text-center">Rating kamu (1-5): </p>
-        <select id="rating-select" class="form-select w-50 mx-auto mt-1" aria-label="Default select example">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option selected value="5">5</option>
-        </select>
-        <button onclick="review({{id}})" class="w-100 text-center mt-4">
-          Kirim review
-        </button>
-        <button onclick="history.back()" class="w-100 text-center mt-4">
-          Kembali
-        </button>
+    </div>
+    <!-- Tabel Review -->
+    <div class="col-md-9" >
+      <div class="tabel_review">
+        <div id="review_table" style="width: 100%;"></div>
       </div>
     </div>
   </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Tulis Review</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form id="form" onsubmit="return false;">
+                  {% csrf_token %}
+                  <div class="mb-3" id="star-rating">
+                    <p style="margin-bottom: 0; margin-top: 10px;">
+                    <input type="radio" name="rate" id="rate-5" value="5">
+                    <label for="rate-5" class="fas fa-star"></label>
+                    <input type="radio" name="rate" id="rate-4" value="4">
+                    <label for="rate-4" class="fas fa-star"></label>
+                    <input type="radio" name="rate" id="rate-3" value="3">
+                    <label for="rate-3" class="fas fa-star"></label>
+                    <input type="radio" name="rate" id="rate-2" value="2">
+                    <label for="rate-2" class="fas fa-star"></label>
+                    <input type="radio" name="rate" id="rate-1" value="1">
+                    <label for="rate-1" class="fas fa-star"></label></p>
+                  </div>
+                  <div class="mb-3">
+                    <label for="review_text" class="col-form-label"><h6 class="card-subtitle text-light-emphasis mt-2">Review</h6></label>
+                    <textarea class="form-control" id="review_text" name="review_text" rows="10"></textarea>
+                  </div>
+                  <input type="number" id="quantity" name="quantity" value="{{ book.id }}">
+                  <input type="text" id="user_id" name="user_id" value="{{ user.username }}">
+              </form>
+          </div>
+          <div class="modal-footer" style="text-align: center; margin: auto;">
+              <button type="button" class="w-20 text-center" data-bs-dismiss="modal" style="width: 10em">Tutup</button>
+              <button type="button" class="w-48 text-center" id="button_add" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modal_terima_kasih" style="width: 10em">Post</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Modal 2 -->
+<div class="modal fade" id="modal_terima_kasih" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Terima Kasih</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <h6 class="card-subtitle text-light-emphasis mt-2" style="text-align: center;">Terima kasih telah me-review, kamu mendapat 10 poin!</h6>
+          </div>
+      </div>
+  </div>
+</div>
+
 <script>
-
-
-  async function review(id) {
-    rating = document.getElementById('rating-select').value
-    await fetch(`{% url 'reviewbuku:review' %}?id=${id}&rating=${rating}`).then((res) => {
-      if (res.status === 201) {
-        window.location.replace("{% url 'bookshelf:show_bookshelf' %}");
-      } else {
-        alert("Gagal melakukan review")
-      }
-    })
+  async function getReview() {
+      $.post("{% url 'reviewbuku:ubah_rating' %}")
+      return fetch("{% url 'reviewbuku:get_review_json' %}").then((res) => res.json())
   }
+
+  async function getBook() {
+      return fetch("{% url 'reviewbuku:get_book_json' %}").then((res) => res.json())
+  }
+
+  async function getBorrow() {
+      return fetch("{% url 'reviewbuku:get_borrow_json' %}").then((res) => res.json())
+  }
+
+  async function getBought() {
+      return fetch("{% url 'reviewbuku:get_bought_json' %}").then((res) => res.json())
+  }
+
+  async function refreshReview() {
+    document.getElementById("review_table").innerHTML = ""
+    const products = await getReview()
+    const book = await getBook()
+    const borrowed = await getBorrow()
+    const bought = await getBought()
+    let htmlString = ''
+    let kosong = true
+    let ada = false
+
+    book.forEach((books)  => {
+      borrowed.forEach((borrow)  => {
+        if (borrow.book.id == books.id)
+          ada = true;
+      })
+      bought.forEach((bought)  => {
+        if (bought.book.id == books.id)
+          ada = true;
+      })
+    })
+    if (ada) {
+      document.getElementById("menu-ulasan").innerHTML = '<button id="tombol-ulasan" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="padding: 10px; width: 90%;">Tulis Review</button>';
+    }
+
+    products.forEach((item) => {  
+      kosong = false
+      let jumlah = ''
+      let jumlahOff = ''
+      let bintang = 5
+      for (let i = 0; i < item.rating; i++) {
+        jumlah += `<span class="fa fa-star checked"></span>`;
+        bintang -= 1;
+      }
+      for (let i = 0; i < bintang; i++) {
+        jumlahOff += `<span class="fa fa-star unchecked"></span>`;
+      }
+        htmlString += `<div class="baris-review"><h6 id="nama-review" class="card-subtitle text-light-emphasis mt-2">${item.user_name}</h6>
+        <h6 id="rating-review">${jumlah}</h6><h6 id="rating-off-review">${jumlahOff}</h6>
+        <h6 id="text-review" class="card-subtitle text-light-emphasis mt-2">${item.review_text}</h6></div>
+    ` 
+    })
+
+    if (kosong) {
+      document.getElementById("review_table").innerHTML = "<div style=\"margin: auto; text-align: center\">Review masih kosong, jadilah yang pertama me-review</div>"
+    }
+    else {
+      document.getElementById("review_table").innerHTML = htmlString
+    }  
+  }
+
+  refreshReview()
+
+  function addReview() {
+      fetch("{% url 'reviewbuku:add_review' %}", {
+          method: "POST",
+          body: new FormData(document.querySelector('#form'))
+      }).then(refreshReview)
+
+      document.getElementById("form").reset()
+      return false
+  }
+
+  document.getElementById("button_add").onclick = addReview
+
+  $(document).ready(function() {
+    $('#button_add').click(function() {
+      setTimeout(function() {
+        window.location.href = '/';
+      }, 2000);  
+      $.post("{% url 'reviewbuku:tambah_poin' %}")
+    });
+  });
 </script>
+
 {% endblock content %}
