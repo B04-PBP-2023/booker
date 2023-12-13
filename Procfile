@@ -1,2 +1,2 @@
-release: django-admin migrate --noinput && rm db.sqlite3 && django-admin migrate
+release: django-admin migrate --noinput
 web: gunicorn booker.wsgi
