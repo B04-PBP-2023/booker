@@ -7,30 +7,26 @@ from book.models import Book, BorrowedBook, BoughtBook
 
 
 def get_borrowed(request):
-    data = BorrowedBook.objects.all()
+    data = BorrowedBook.objects.all().order_by('pk')
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 
 def get_bought(request):
-    data = BoughtBook.objects.all()
+    data = BoughtBook.objects.all().order_by('pk')
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 
 def get_books(request):
-    data = Book.objects.all()
-    for b in data:
-        b.points_to_exchange = 100
-        b.for_sale = True
-        b.save()
+    data = Book.objects.all().order_by('pk')
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 
 def search_books(request):
     query = request.GET.get('q', '')
     if (query == ''):
-        data = Book.objects.all()
+        data = Book.objects.all().order_by('pk')
         return HttpResponse(serializers.serialize("json", data), content_type="application/json")
     else:
         data = Book.objects.filter(
-            name__contains=query) | Book.objects.filter(author__contains=query) | Book.objects.filter(genre__contains=query)
+            name__contains=query).order_by('pk') | Book.objects.filter(author__contains=query).order_by('pk') | Book.objects.filter(genre__contains=query).order_by('pk')
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
