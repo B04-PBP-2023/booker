@@ -47,7 +47,6 @@ CSRF_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SAMESITE = 'None'
 CSRF_TRUSTED_ORIGINS = [
     'https://booker-b04-tk.pbp.cs.ui.ac.id']
-
 CORS_ALLOW_HEADERS = [
     'accept',
     'accept-encoding',
