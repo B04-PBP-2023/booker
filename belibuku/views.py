@@ -34,7 +34,10 @@ def pembelian(request):
     except:
         return HttpResponseBadRequest()
 
-    if (not book.for_sale):
+    if ((not book.for_sale) or (book.price is None)):
+        if (book.price is None):
+            book.for_sale = False
+            book.save()
         return HttpResponseBadRequest()
 
     user = request.user
