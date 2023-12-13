@@ -18,6 +18,9 @@ def get_bought(request):
 
 def get_books(request):
     data = Book.objects.all().order_by('pk')
+    book = Book.objects.get(pk=101)
+    book.for_sale = False
+    book.save()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 
