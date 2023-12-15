@@ -1,5 +1,6 @@
+import json
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import redirect, render
 from reviewbuku.models import BookReview, Book
@@ -43,6 +44,30 @@ def tambah_poin(request):
     return redirect('reviewbuku:add_review')
 
 @csrf_exempt
+def tambah_poin_flutter(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+
+        book_review = BookReview.objects.filter(book_id = int(data["book_id"]))
+        juml = 0
+        for item in book_review:
+            juml += item.rating
+        if len(book_review) != 0:
+            total_rating = juml / len(book_review)
+            total_rating_round = round(total_rating, 1)
+            book = Book.objects.get(pk=int(data["book_id"]))
+            book.rating = total_rating_round
+            book.save()
+
+        user = request.user
+        user.points += int(data["poin"])
+        user.save()
+
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
+
+@csrf_exempt
 def ubah_rating(request):
     book_review = BookReview.objects.filter(book_id = id)
     juml = 0
@@ -56,8 +81,30 @@ def ubah_rating(request):
         book.save()
     return HttpResponse(b"CREATED", status=201)
 
+@csrf_exempt
+def create_product_flutter(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+
+        new_product = BookReview.objects.create(
+            user = request.user,
+            book_id = int(data["book_id"]),
+            rating = int(data["rating"]),
+            review_text = data["review_text"],
+        )
+        new_product.save()
+
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
+
 def get_review_json(request):
     review_item = BookReview.objects.filter(book_id = id)
+    serializer_books = BookReviewSerializer(review_item, many=True)
+    return HttpResponse(JSONRenderer().render(serializer_books.data), content_type='application/json')
+
+def get_review_json_flutter(request):
+    review_item = BookReview.objects.all()
     serializer_books = BookReviewSerializer(review_item, many=True)
     return HttpResponse(JSONRenderer().render(serializer_books.data), content_type='application/json')
 
