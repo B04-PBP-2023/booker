@@ -79,7 +79,7 @@ def logout_user(request):
     return response
 
 
-# @csrf_exempt
+@csrf_exempt
 def login_mobile(request):
     username = request.POST['username']
     password = request.POST['password']

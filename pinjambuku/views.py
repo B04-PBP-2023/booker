@@ -26,7 +26,7 @@ def show_pinjam_buku(request):
 
 
 # Fungsi mengembalikan buku
-# @csrf_exempt
+@csrf_exempt
 @login_required
 @require_http_methods(["GET"])
 def pengembalian(request):
@@ -43,7 +43,7 @@ def pengembalian(request):
     return HttpResponseRedirect(reverse('bookshelf:show_bookshelf'))
 
 
-# @csrf_exempt
+@csrf_exempt
 @login_required(login_url='/authentication/login/')
 @require_http_methods(["GET", "POST"])
 def peminjaman(request):

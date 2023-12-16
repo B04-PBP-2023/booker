@@ -9,7 +9,7 @@ from django.http import HttpResponseRedirect
 # Create your views here.
 
 
-# @csrf_exempt
+@csrf_exempt
 @login_required(login_url='/authentication/login/')
 def show_donasi_buku(request):
     form = BookForm(request.POST or None)

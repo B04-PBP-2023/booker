@@ -24,7 +24,7 @@ def show_beli_buku(request):
     return render(request, 'belibuku.html', context)
 
 
-# @csrf_exempt
+@csrf_exempt
 @login_required(login_url='/authentication/login/')
 @require_http_methods(["GET", "POST"])
 def pembelian(request):
