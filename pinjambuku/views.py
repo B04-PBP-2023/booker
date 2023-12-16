@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
@@ -26,7 +26,7 @@ def show_pinjam_buku(request):
 
 
 # Fungsi mengembalikan buku
-@csrf_exempt
+# @csrf_exempt
 @login_required
 @require_http_methods(["GET"])
 def pengembalian(request):
@@ -43,19 +43,37 @@ def pengembalian(request):
     return HttpResponseRedirect(reverse('bookshelf:show_bookshelf'))
 
 
-@csrf_exempt
+# @csrf_exempt
 @login_required(login_url='/authentication/login/')
-@require_http_methods(["GET"])
+@require_http_methods(["GET", "POST"])
 def peminjaman(request):
     try:
-        id = int(request.GET.get('id'))
-        durasi = int(request.GET.get('durasi'))
-        book = Book.objects.get(pk=id)
-    except:
-        return HttpResponseBadRequest()
+        if (request.method == "GET"):
+            id = int(request.GET.get('id'))
+            durasi = int(request.GET.get('durasi'))
+            book = Book.objects.get(pk=id)
+        else:
+            id = int(request.POST.get('id'))
+            durasi = int(request.POST.get('durasi'))
+            book = Book.objects.get(pk=id)
+    except Exception as e:
+        print(str(e))
+        if (request.method == "GET"):
+            return HttpResponseBadRequest()
+        else:
+            return JsonResponse({
+                "created": False,
+                "message": "Gagal meminjam buku."
+            }, status=301)
 
     if (not (1 <= durasi <= 7)):
-        return HttpResponseBadRequest()
+        if (request.method == "GET"):
+            return HttpResponseBadRequest()
+        else:
+            return JsonResponse({
+                "created": False,
+                "message": "Gagal meminjam buku."
+            }, status=301)
 
     user = request.user
     start_date = date.today()
@@ -63,4 +81,10 @@ def peminjaman(request):
     new_borrowed_book = BorrowedBook(
         user=user, book=book, start_date=start_date, end_date=end_date)
     new_borrowed_book.save()
-    return HttpResponse(b"CREATED", status=201)
+    if (request.method == "GET"):
+        return HttpResponse(b"CREATED", status=201)
+    else:
+        return JsonResponse({
+            "created": True,
+            "message": "Berhasil meminjam buku."
+        }, status=201)
