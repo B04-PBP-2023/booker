@@ -33,7 +33,7 @@ def pembelian(request):
             id = int(request.GET.get('id'))
             book = Book.objects.get(pk=id)
         else:
-            id = int(request.GET.get('id'))
+            id = int(request.POST.get('id'))
             book = Book.objects.get(pk=id)
     except:
         if (request.method == "GET"):
@@ -67,19 +67,41 @@ def pembelian(request):
 
 @csrf_exempt
 @login_required(login_url='/authentication/login/')
-@require_http_methods(["GET"])
+@require_http_methods(["GET", "POST"])
 def pembelian_dengan_poin(request):
     user = request.user
     if (user.points >= 100):
         try:
-            id = int(request.GET.get('id'))
-            book = Book.objects.get(pk=id)
+            if (request.method == "GET"):
+                id = int(request.GET.get('id'))
+                book = Book.objects.get(pk=id)
+            else:
+                id = int(request.POST.get('id'))
+                book = Book.objects.get(pk=id)
         except:
-            return HttpResponseBadRequest()
+            if (request.method == "GET"):
+                return HttpResponseBadRequest()
+            else:
+                return JsonResponse({
+                    "created": False,
+                    "message": "Gagal menukar buku dengan poin."
+                }, status=301)
         new_bought_book = BoughtBook(user=user, book=book)
         new_bought_book.save()
         user.points -= 100
         user.save()
-        return HttpResponse(b"CREATED", status=201)
+        if (request.method == "GET"):
+            return HttpResponse(b"CREATED", status=201)
+        else:
+            return JsonResponse({
+                "created": True,
+                "message": "Berhasil menukar buku dengan poin."
+            }, status=201)
     else:
-        return HttpResponse(b"Unprocessable", status=422)
+        if (request.method == "GET"):
+            return HttpResponseBadRequest()
+        else:
+            return JsonResponse({
+                "created": False,
+                "message": "Poin tidak cukup"
+            }, status=422)
