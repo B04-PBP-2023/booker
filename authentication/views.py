@@ -106,6 +106,7 @@ def login_mobile(request):
         }, status=401)
 
 
+@csrf_exempt
 def logout_mobile(request):
     username = request.user.username
 
