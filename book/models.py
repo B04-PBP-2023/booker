@@ -30,6 +30,18 @@ class BoughtBook(models.Model):
     book = models.ForeignKey(Book, on_delete=models.RESTRICT)
     bought_date = models.DateField(auto_now_add=True)
 
+class BookReview(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    RATING_CHOICES = (
+        (5, '5'),
+        (4, '4'),
+        (3, '3'),
+        (2, '2'),
+        (1, '1'),
+    )
+    rating = models.PositiveIntegerField(choices=RATING_CHOICES)
+    review_text = models.TextField()
 
 class BookSerializer(rest_serializers.ModelSerializer):
     class Meta:
@@ -51,3 +63,10 @@ class BoughtBookSerializer(rest_serializers.ModelSerializer):
     class Meta:
         model = BoughtBook
         fields = ('user', 'book', 'bought_date')
+
+class BookReviewSerializer(rest_serializers.ModelSerializer):
+    user_name = rest_serializers.CharField(source='user.username', read_only=True)
+
+    class Meta:
+        model = BookReview
+        fields = ['id', 'user', 'user_name', 'book', 'rating', 'review_text']
