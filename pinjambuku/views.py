@@ -28,9 +28,12 @@ def show_pinjam_buku(request):
 # Fungsi mengembalikan buku
 @csrf_exempt
 @login_required
-@require_http_methods(["GET"])
+@require_http_methods(["GET", "POST"])
 def pengembalian(request):
-    id = request.GET.get('id')
+    if (request.method == "GET"):
+        id = request.GET.get('id')
+    else:
+        id = request.POST.get('id')
     user = request.user
     book = Book.objects.get(pk=id)
     borrowed_book = BorrowedBook.objects.get(book=book)
@@ -39,8 +42,20 @@ def pengembalian(request):
         user.points += 10
         user.save()
     except:
-        return HttpResponseBadRequest()
-    return HttpResponseRedirect(reverse('bookshelf:show_bookshelf'))
+        if (request.method == "GET"):
+            return HttpResponseBadRequest()
+        else:
+            return JsonResponse({
+                "success": False,
+                "message": "Gagal mengembalikan buku."
+            }, status=301)
+    if (request.method == "GET"):
+        return HttpResponseRedirect(reverse('bookshelf:show_bookshelf'))
+    else:
+        return JsonResponse({
+            "success": True,
+            "message": "Berhasil mengembalikan buku."
+        }, status=201)
 
 
 @csrf_exempt
@@ -57,7 +72,6 @@ def peminjaman(request):
             durasi = int(request.POST.get('durasi'))
             book = Book.objects.get(pk=id)
     except Exception as e:
-        print(str(e))
         if (request.method == "GET"):
             return HttpResponseBadRequest()
         else:
