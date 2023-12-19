@@ -171,6 +171,7 @@ def get_user_data(request):
         return JsonResponse({
             "username": request.user.username,
             "points": request.user.points,
+            "admin": request.user.is_admin,
         }, status=200)
     else:
         return JsonResponse({
