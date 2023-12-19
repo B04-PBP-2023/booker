@@ -14,6 +14,7 @@ from django.http import HttpResponse
 from django.core import serializers
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 # Create your views here.
 
 
@@ -47,6 +48,40 @@ class UserSignUp(CreateView):
         user = form.save()
         login(self.request, user)
         return redirect('frontpage:show_frontpage')
+
+
+class UserSignUpMobile(CreateView):
+    model = User
+    form_class = UserSignUpForm
+    template_name = 'signup.html'
+    success_url = 'frontpage.html'
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super(UserSignUpMobile, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        kwargs['role'] = 'user'
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return JsonResponse({
+            "username": user.username,
+            "status": True,
+            "message": "Pendaftaran sukses!"
+        }, status=201)
+
+    def form_invalid(self, form):
+        error_list = []
+        for field in form:
+            for error in field.errors:
+                error_list.append(error)
+        return JsonResponse({
+            "status": False,
+            "errors": error_list,
+        }, status=301)
 
 
 @require_http_methods(["GET", "POST"])

@@ -36,12 +36,16 @@ def pengembalian(request):
         id = request.POST.get('id')
     user = request.user
     book = Book.objects.get(pk=id)
-    borrowed_book = BorrowedBook.objects.get(book=book)
     try:
+        borrowed_book = BorrowedBook.objects.get(user=user, book=book)
         borrowed_book.delete()
+        # borrowed_book = BorrowedBook.objects.filter(user=user, book=book)
+        # for b in borrowed_book:
+        #     b.delete()
         user.points += 10
         user.save()
-    except:
+    except Exception as e:
+        print(e)
         if (request.method == "GET"):
             return HttpResponseBadRequest()
         else:
@@ -62,6 +66,7 @@ def pengembalian(request):
 @login_required(login_url='/authentication/login/')
 @require_http_methods(["GET", "POST"])
 def peminjaman(request):
+    user = request.user
     try:
         if (request.method == "GET"):
             id = int(request.GET.get('id'))
@@ -71,6 +76,21 @@ def peminjaman(request):
             id = int(request.POST.get('id'))
             durasi = int(request.POST.get('durasi'))
             book = Book.objects.get(pk=id)
+
+        try:
+            borrowed_book = BorrowedBook.objects.get(user=user, book=book)
+        except:
+            borrowed_book = None
+
+        if (borrowed_book != None):
+            if (request.method == "GET"):
+                return HttpResponseBadRequest()
+            else:
+                return JsonResponse({
+                    "created": False,
+                    "message": "Buku tersebut sedang anda pinjam."
+                }, status=301)
+
     except Exception as e:
         if (request.method == "GET"):
             return HttpResponseBadRequest()
