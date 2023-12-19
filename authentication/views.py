@@ -70,6 +70,7 @@ class UserSignUpMobile(CreateView):
         return JsonResponse({
             "username": user.username,
             "status": True,
+            "errors": [],
             "message": "Pendaftaran sukses!"
         }, status=201)
 
