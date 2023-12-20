@@ -46,10 +46,30 @@ def tambah_poin(request):
     return redirect('reviewbuku:add_review')
 
 
-@csrf_exempt
-def tambah_poin_flutter(request):
-    if request.method == 'POST':
+# @csrf_exempt
+# def tambah_poin_flutter(request):
+#     if request.method == 'POST':
 
+#         book_review = BookReview.objects.filter(
+#             book_id=request.POST.get("book_id"))
+#         juml = 0
+#         for item in book_review:
+#             juml += item.rating
+#         if len(book_review) != 0:
+#             total_rating = juml / len(book_review)
+#             total_rating_round = round(total_rating, 1)
+#             book = Book.objects.get(pk=request.POST.get("book_id"))
+#             book.rating = total_rating_round
+#             book.save()
+
+#         return JsonResponse({"status": "success"}, status=200)
+#     else:
+#         return JsonResponse({"status": "error"}, status=401)
+
+
+@csrf_exempt
+def ubah_rating(request):
+    if request.method == 'POST':
         book_review = BookReview.objects.filter(
             book_id=request.POST.get("book_id"))
         juml = 0
@@ -65,21 +85,6 @@ def tambah_poin_flutter(request):
         return JsonResponse({"status": "success"}, status=200)
     else:
         return JsonResponse({"status": "error"}, status=401)
-
-
-@csrf_exempt
-def ubah_rating(request):
-    book_review = BookReview.objects.filter(book_id=id)
-    juml = 0
-    for item in book_review:
-        juml += item.rating
-    if len(book_review) != 0:
-        total_rating = juml / len(book_review)
-        total_rating_round = round(total_rating, 1)
-        book = Book.objects.get(pk=id)
-        book.rating = total_rating_round
-        book.save()
-    return HttpResponse(b"CREATED", status=201)
 
 
 @csrf_exempt
