@@ -89,7 +89,10 @@ def ubah_rating(request):
 
 @csrf_exempt
 def create_product_flutter(request):
-    if request.method == 'POST':
+
+    book_reviewed = BookReview.objects.filter(
+        user=request.user, book_id=request.POST.get("book_id"))
+    if (request.method == 'POST') and (not book_reviewed.exists):
 
         new_product = BookReview.objects.create(
             user=request.user,
