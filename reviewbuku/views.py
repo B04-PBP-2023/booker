@@ -92,7 +92,6 @@ def create_product_flutter(request):
 
     book_reviewed = BookReview.objects.filter(
         user=request.user, book_id=int(request.POST.get("book_id"))).exists()
-    print(book_reviewed)
     if (request.method == 'POST') and (not book_reviewed):
 
         new_product = BookReview.objects.create(
