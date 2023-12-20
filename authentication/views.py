@@ -24,6 +24,10 @@ class AdminSignUp(CreateView):
     template_name = 'signup.html'
     success_url = 'frontpage.html'
 
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super(UserSignUpMobile, self).dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         kwargs['role'] = 'admin'
         return super().get_context_data(**kwargs)
